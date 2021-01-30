@@ -54,10 +54,10 @@
 					<td th:utext="${user.birthDate}" ></td>
 					<td th:utext="${user.Role}" ></td>
 					<td>
-						<a th:href="@{/deluser/{id}(id=${user.id})}" class="btn btn-danger mt">Delete</a>
+						<a th:href="@{/admin/deluser/{id}(id=${user.id})}" class="btn btn-danger mt">Delete</a>
 					</td>
 					<td> 
-						<a th:href="@{/upduser/{id}(id=${user.id})}"   aria-hidden="true" class="btn btn-info mt">edit</a>
+						<a th:href="@{/admin/upduser/{id}(id=${user.id})}"   aria-hidden="true" class="btn btn-info mt">edit</a>
 					</td>
 				</tr>
 			</table>	

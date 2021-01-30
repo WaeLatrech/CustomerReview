@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" th:href="@{../../css/bootstrap.css}"   type="text/css">
-	<link  type="text/css" href="@{https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap}" rel="stylesheet">	
-	<link rel="stylesheet" type="text/css" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
+	<link  type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">	
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" th:href="@{../../css/animate.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{../../css/owl.carousel.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{../../css/owl.theme.default.min.css}">
@@ -53,7 +53,7 @@
 	        	<!-- statiqueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  -->
 		        <div class="dropdown order-lg-last ml-4 dark-text">
 			        <a  id="dropdownMenuButton" data-toggle="dropdown" class= " dark-text" aria-haspopup="true" aria-expanded="false">
-			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true"></i>   welcome , nour  <i class="fa fa-chevron-down" aria-hidden="true"></i>   
+			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true" ></i> welcome , <i th:value="${user.username}"  th:text="${user.username}"></i>     <i class="fa fa-chevron-down" aria-hidden="true"></i>   
 			        </a>
 	          		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			           <a class="dropdown-item" href="/logout"> <i class="fa fa-sign-out" ></i> Logout </a>
@@ -62,7 +62,7 @@
          		</div>
 		      	<div class="collapse navbar-collapse" id="ftco-nav">
 			        <ul class="navbar-nav mr-auto">
-			        	<li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+			        	<li class="nav-item active"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
 			        	<li class="nav-item"><a href="/user/Products" class="nav-link">Our products</a></li>
 			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
@@ -248,13 +248,7 @@
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a review</h3>
                 <form action="#" class="p-5 bg-light" th:action="@{/add-review/{id}(id=${product.idp})}"  method="post">
-                  <div class="form-group">
-                    <label for="TitleReview">ID product *</label>
-                    <input type="text"  class="form-control" id="idproduct" th:value="${product.idp}" name="idp">
-                   
-                  </div>
 
-                   
                       	<label class="mb-4">Quality price *</label><br/>
                         <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note"  th:value="${avis.QalityPrice}" name="QalityPrice">
                         <label><span  id="demo"></span></label><br/><br/>

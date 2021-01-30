@@ -13,7 +13,6 @@ public interface UserService {
     List<UserEntity> getAllUserEntity();
     UserEntity getUserEntityById(long id);
     UserEntity createUserEntity(UserEntity entity );
-    void modifyUserEntity(long id,UserEntity newentity);
     UserEntity deleteUserEntity(long id);
     //List<AvisEntity>    getAllAvisEntity();
     
@@ -41,6 +40,7 @@ public interface UserService {
     AvisEntity getAvisById( int id) ; 
     AvisEntity modifyAvis( int id , AvisEntity newEntityAvis);
     public AvisEntity addLike(int id , long userid);
-    public void DelTokenByIdUser(double i) ;
+    public void DelTokenByIdUser(long i) ;
     //public AvisEntity addDisLike(int id , int userid);
+	void modifyUserEntity(long id , UserEntity newUser);
 }

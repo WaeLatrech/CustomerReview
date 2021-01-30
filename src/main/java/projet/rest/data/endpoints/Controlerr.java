@@ -2,7 +2,6 @@ package projet.rest.data.endpoints;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -250,7 +249,7 @@ public class Controlerr {
             conftrepo.save(confirmationToken);
             String text="To confirm your account, please click here : "
                     +"http://localhost:9090/confirm-account/"+confirmationToken.getConfirmationToken();
-            SendEmailService.verifyEmail(user.getEmail(),"Complete Registration!",text);
+            SendEmailService.verifyEmail(user.getEmail(),"Mail Verified!",text);
            redirAttrs.addFlashAttribute("success", "Account created! Check your mail to activate Your Account");
             return "redirect:/Login";
   }
@@ -271,6 +270,23 @@ public class Controlerr {
 		token.setExpired(1);
 		conftrepo.save(token);
 		redirAttrs.addFlashAttribute("success", "Account Activated! Try to Login");
+		return "redirect:/Login";
+
+    }
+	@GetMapping("/confirm-Email/{confirmationToken}/{email}")
+    public String confirmMail(@PathVariable String confirmationToken, RedirectAttributes redirAttrs,@PathVariable String email)
+    {	
+        ConfirmationToken token = conftrepo.findByConfirmationToken(confirmationToken);
+        if (token.getExpired()==1)
+        	return "redirect:/Login";
+        
+        UserEntity user = userrepo.findByEmail(token.getUser().getEmail());
+        user.setRole("USER");
+        user.setEmail(email);
+		userrepo.save(user);
+		token.setExpired(1);
+		conftrepo.save(token);
+		redirAttrs.addFlashAttribute("success", "Mail Verified! Try to Login");
 		return "redirect:/Login";
 
     }

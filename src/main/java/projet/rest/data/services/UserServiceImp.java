@@ -90,16 +90,17 @@ public class UserServiceImp implements UserService {
     @Override
     public void modifyUserEntity(long id, UserEntity newUser) {
         UserEntity oldUser = this.getUserEntityById(id);
-        if (newUser.getUsername() != null)    
+        System.out.println("password 2 = '"+newUser.getPassword()+"'");	
+        if (!newUser.getUsername().equals(""))    
             oldUser.setUsername(newUser.getUsername());
-        if (newUser.getEmail() != null)    
-            oldUser.setEmail(newUser.getEmail());
-        if (newUser.getPassword() != null)
-        {   oldUser.setPassword(newUser.getPassword());
+
+        if (!newUser.getPassword().equals(""))
+        {   System.out.println("password 3 ="+newUser.getPassword());
+        	oldUser.setPassword(newUser.getPassword());
         	String password = bCryptPasswordEncoder.encode(newUser.getPassword());
         	oldUser.setPassword(password);
         }
-        if (newUser.getPhone() != null)    
+        if (!newUser.getPhone().equals(""))    
             oldUser.setPhone(newUser.getPhone());
         if (newUser.getBirthDate() != null)
             oldUser.setBirthDate(newUser.getBirthDate());
@@ -389,7 +390,7 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
 
 
 	@Override
-	public void DelTokenByIdUser(double i ) {
+	public void DelTokenByIdUser(long i ) {
 		// TODO Auto-generated method stub
 		
 		List<ConfirmationToken> tokens = repostoken.findAll();
@@ -398,6 +399,9 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
 			if(t.getUser().getId()==i)
 				repostoken.deleteById(t.getTokenid());
 		}}
+
+
+	
 		
 	
     

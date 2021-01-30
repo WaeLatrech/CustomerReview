@@ -70,7 +70,7 @@
 		    </div>
 		  </nav>
 	    <!-- END nav -->
-	   <div class="hero-wrap hero-wrap-2" style="background-image: url('static/images/3.jpg'); " data-stellar-background-ratio="0.5">
+	   <div class="hero-wrap hero-wrap-2" style="background-image: url('../static/images/3.jpg'); " data-stellar-background-ratio="0.5">
 	    </div>
 		</section>
 
@@ -237,12 +237,8 @@
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a review</h3>
-                <form action="#" class="p-5 bg-light" th:action="@{/add-review/{id}(id=${product.idp})}"  method="post">
-                  <div class="form-group">
-                    <label for="TitleReview">ID product *</label>
-                    <input type="text"  class="form-control" id="idproduct" th:value="${product.idp}" name="idp">
-                   
-                  </div>
+                <form action="#" class="p-5 bg-light" >
+                  
 
                    
                       	<label class="mb-4">Quality price *</label><br/>
@@ -275,7 +271,9 @@
 
                  
                   <div class="form-group">
-                    <input type="submit" value="Submit your review" class="btn py-3 px-4 btn-primary">
+                    <a th:href="@{/user/add-review/{id}(id=${product.idp})}"  type="submit"  class="btn py-3 px-4 btn-primary">
+                  	Submit your review
+                  	</a>
                   </div>
 
                 </form>

@@ -7,7 +7,7 @@
     <link href="../../css/bootstrap.css" rel="stylesheet">
     <link href="@{https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap}" rel="stylesheet">
 
-    <link rel="stylesheet" href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
     <link rel="stylesheet" th:href="@{../../css/animate.css}">
     
@@ -58,7 +58,7 @@
 	        	<!-- statiqueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  -->
 		        <div class="dropdown order-lg-last ml-4 dark-text">
 			        <a  id="dropdownMenuButton" data-toggle="dropdown" class= " dark-text" aria-haspopup="true" aria-expanded="false">
-			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true"></i>   welcome , nour  <i class="fa fa-chevron-down" aria-hidden="true"></i>   
+			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true" ></i> welcome , <i th:value="${user.username}"  th:text="${user.username}"></i>     <i class="fa fa-chevron-down" aria-hidden="true"></i>   
 			        </a>
 	          		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			           <a class="dropdown-item" href="/logout"> <i class="fa fa-sign-out" ></i> Logout </a>
@@ -98,6 +98,7 @@
 		          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 			          <div class="col-md-10 text-center ftco-animate">
 			          	<div class="text w-100">
+
 			          		<h2>Research & Read Business Reviews Before Buying</h2>
 				            <h1 class="mb-4">
                            We analyze millions of reviews to find the best products for you</h1>
@@ -138,81 +139,22 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
+              <div class="item" th:each="review : ${reviews}">
                 <div class="testimony-wrap py-4">
                 	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                   <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="mb-4" th:value="${review.comment}" th:text="${review.comment}">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../../../../images/person_1.jpg)"></div>
+                    	<div class="user-img" style="background-image: url(../images/person_1.jpg)"></div>
                     	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
+		                    <p class="name" th:value="${review.username}" th:text="${review.username}"></p>
 		                    <span class="position">Marketing Manager</span>
 		                  </div>
 	                  </div>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../../../../images/person_2.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../../../../images/person_3.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../../../../images/person_1.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../../../../images/person_2.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -370,54 +312,23 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
+          <div class="col-md-4 d-flex ftco-animate" th:each="prod : ${prods}">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../../../../images/image_1.jpg');">
+              <a th:href="@{/user/add-review/{id}(id=${prod.idp})}"> <img alt="" th:src="*{'data:img/png;base64,'+{prod.img}}" style="width: 280px; height: 250px; ">
               </a>
               <div class="text p-3">
               	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(../../../../images/person_2.jpg);"></div>
+              		<div class="img author" style="background-image: url(images/person_2.jpg);"></div>
               		<div class="desc pl-3">
-              			<span>Posted by John doe</span>
-              			<span>24 February 2020</span>
+              			Posted By <i th:value="${prod.username}" th:text="${prod.username}"></i>
+              			<span th:value="${prod.dateofcreation}" th:text="${prod.dateofcreation}"></span>
               		</div>
               	</div>
-                <h3 class="heading"><a href="#">How Roofing Charge for Their Services</a></h3>
+                <h3 class="heading"><a href="#" th:value="${prod.nom}" th:text="${prod.nom}"></a></h3>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../../../../images/image_2.jpg');">
-              </a>
-              <div class="text p-3">
-              	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(../../../../images/person_3.jpg);"></div>
-              		<div class="desc pl-3">
-              			<span>Posted by John doe</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#">How Roofing Charge for Their Services</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../../../../images/image_3.jpg');">
-              </a>
-              <div class="text p-3">
-              	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(../../../../images/person_1.jpg);"></div>
-              		<div class="desc pl-3">
-              			<span>Posted by John doe</span>
-              			<span>24 February 2020</span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#">How Roofing Charge for Their Services</a></h3>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

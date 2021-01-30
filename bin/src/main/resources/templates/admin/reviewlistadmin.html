@@ -54,10 +54,10 @@
 						<td th:utext="${a.nblike}" ></td>
 						<td th:utext="${a.nbdislike}" ></td>
 						<td >
-							<a th:href="@{/delreview/{id}(id=${a.id})}" class="btn btn-danger mt" >Delete</a>
+							<a th:href="@{/admin/delreview/{id}(id=${a.id})}" class="btn btn-danger mt" >Delete</a>
 						</td>
 						<td> 
-							<a th:href="@{/updreview/{id}(id=${a.id})}"   aria-hidden="true" class="btn btn-info mt">Edit</a>
+							<a th:href="@{/admin/updreview/{id}(id=${a.id})}"   aria-hidden="true" class="btn btn-info mt">Edit</a>
 						</td>
 					</div>
 				  </tr>

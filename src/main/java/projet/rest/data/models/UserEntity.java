@@ -21,7 +21,7 @@ import lombok.Data;
 @Entity
 @Table (name="UserEntity")
 public class UserEntity {
-@Id //primary key
+@Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id; //auto generé
 //@Column(name = "First Name",length = 50,nullable = false)

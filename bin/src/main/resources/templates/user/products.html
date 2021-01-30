@@ -4,9 +4,9 @@
     <title>Your Advancer- Products </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link href="@{https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap}" rel="stylesheet">
-    <link rel="stylesheet" href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}"> 
+    <link rel="stylesheet" th:href="@{../css/bootstrap.css}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" th:href="@{../css/animate.css}">    
     <link rel="stylesheet" th:href="@{../css/owl.carousel.min.css}">
     <link rel="stylesheet" th:href="@{../css/owl.theme.default.min.css}">
@@ -53,7 +53,7 @@
 	        	<!-- statiqueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  -->
 		        <div class="dropdown order-lg-last ml-4 dark-text">
 			        <a  id="dropdownMenuButton" data-toggle="dropdown" class= " dark-text" aria-haspopup="true" aria-expanded="false">
-			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true"></i>   welcome , nour  <i class="fa fa-chevron-down" aria-hidden="true"></i>   
+			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true" ></i> welcome , <i th:value="${user.username}"  th:text="${user.username}"></i>     <i class="fa fa-chevron-down" aria-hidden="true"></i>   
 			        </a>
 	          		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			           <a class="dropdown-item" href="/logout"> <i class="fa fa-sign-out" ></i> Logout </a>
@@ -62,9 +62,9 @@
          		</div>
 		      	<div class="collapse navbar-collapse" id="ftco-nav">
 			        <ul class="navbar-nav mr-auto">
-			        	<li class="nav-item active"><a href="/user/home" class="nav-link">Home</a></li>
+			        	<li class="nav-item"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-			        	<li class="nav-item"><a href="" class="nav-link">Our products</a></li>
+			        	<li class="nav-item active"><a href="" class="nav-link">Our products</a></li>
 			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
 			        </ul>
 		      	</div>
@@ -112,7 +112,7 @@
                       			<div class="row" >
 						          	<div class="col-md-4 d-flex ftco-animate" th:each="product : ${products}">
 						            	<div class="blog-entry align-self-stretch">
-						              		<a th:href="@{/user/add-review/{id}(id=${product.idp})}"class="block-20" >
+						              		<a th:href="@{/add-review/{id}(id=${product.idp})}"class="block-20" >
 						              			<center> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 150px; height: 180px; "></center>
 						              		</a>
 						              		<div class="text p-3">
@@ -266,7 +266,7 @@
         <script th:src="@{../js/owl.carousel.min.js}"></script>
         <script th:src="@{../js/jquery.magnific-popup.min.js}"></script>
         <script th:src="@{../js/scrollax.min.js}"></script>
-  		<script src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false}"></script>
+  		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   		<script th:src="@{../js/google-map.js}"></script>
         <script th:src="@{../js/main.js}"></script>
     
