@@ -168,9 +168,7 @@ public class UserController {
 	public String ReviewSuccess(@ModelAttribute("avis") AvisEntity a , @PathVariable("id") int idp ) {
 		/*service.createProduct(a);*/
 		a.setUser(userrepo.findByUsername(getUserUsername()));
-		a.getUser().getReviews().add(a);
-		System.out.println("userid : "+a.getUser().getId());
-		System.out.println(" i = "+idp);
+		
 		try {
 			//a.setProduct(p);
 			service.createAvis(idp, a);

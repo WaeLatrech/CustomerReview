@@ -229,7 +229,7 @@ Optional<ProductEntity> opt = reposProduct.findById(id);
  
 
              product = opt.get();
-             return product.getAvis();
+             return product.getAvisss();
         }
         else
             throw new NoSuchElementException("User with id : "+id+" is not found"); 
@@ -246,7 +246,7 @@ public ProductEntity createProduct(String cat ,String nom, String marque , Strin
     	productEntity.setNom(nom);
     	productEntity.setMarque(marque);
     	productEntity.setDescription(description);
-    	productEntity.setUsername(username);
+    	productEntity.setUserp(reposUser.findByUsername(username));
     	String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
     	if(FileName.contains("..")) {
     		System.out.println("not a proper file ");
@@ -275,16 +275,20 @@ public ProductEntity createProduct(String cat ,String nom, String marque , Strin
     @Override
     public ProductEntity createAvis(int id, AvisEntity a ) {
         ProductEntity productEntity = getProductById(id);
+        AvisEntity a1= new AvisEntity();
         float note;
      
         note=(a.getCameraquality()+a.getQalityPrice()+a.getDesign())/3;
-        a.setNote(note);
-        a.setProduct(productEntity);
-        a.setLikedBy(new ArrayList<>());
+        a1.setNote(note);
+        a1.setProduct(productEntity);
+        a1.setLikedBy(new ArrayList<>());
         //a.getLikedBy().add(0);
-        a.setDislikedBy(new ArrayList<>());
+        a1.setDislikedBy(new ArrayList<>());
         //a.getDislikedBy().add(0);
-        reposAvis.save(a);
+      a1.setUser(a.getUser());
+     a1.setComment(a.getComment());
+     a1.setDateofcreation(a.getDateofcreation());
+        reposAvis.save(a1);
         
         return productEntity;
     

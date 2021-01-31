@@ -208,7 +208,7 @@ public class AdminControler {
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
 		for(ProductEntity p1 : service.getAllProduct())
 		{
-			if(p1.getAvis().size()>0)
+			if(p1.getAvisss().size()>0)
 			{
 				products.add(p1);
 			}

@@ -34,7 +34,7 @@ public class ProductEntity {
 	@CreationTimestamp
 	private Date dateofcreation ;
 	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
-	private List<AvisEntity> avis;
+	private List<AvisEntity> avisss;
 	@JsonIgnore
 	@ManyToOne
 	private CategoryEntity category;
@@ -42,8 +42,10 @@ public class ProductEntity {
 	private float rate;
 	@Lob
 	@Column(columnDefinition = "MEDIUMBLOB")
-	private String img; 
-	private String username;
-	private String description ;
+	private String img;
+	@JsonIgnore
+@ManyToOne(cascade = CascadeType.REMOVE)
+	UserEntity userp;
+private String description ;
 
 }

@@ -39,5 +39,7 @@ private List<AvisEntity> reviews ;
 private List<AvisEntity> Likedavis;
 @ManyToMany(mappedBy = "dislikedBy", cascade = CascadeType.REMOVE)
 private List<AvisEntity> DisLikedavis;
+@OneToMany(mappedBy = "userp",cascade = CascadeType.REMOVE)
+private List<ProductEntity> products;
 
 }
