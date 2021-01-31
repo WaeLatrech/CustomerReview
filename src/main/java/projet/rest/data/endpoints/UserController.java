@@ -1,5 +1,7 @@
 package projet.rest.data.endpoints;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -121,7 +123,7 @@ public class UserController {
 			model.addAttribute("products", products);
 			model.addAttribute("categories", cats );
 		
-			return "Other/products" ; 
+			return "user/products" ; 
 	}
 	
 	@GetMapping("/add-product")
@@ -214,10 +216,23 @@ public class UserController {
 	@PostMapping("/upd_account")
 	public String EditAccount( Model model ,@RequestParam ("username") String username ,
 			@RequestParam ("email") String email , @RequestParam("password") String password,
-			@RequestParam("phone") String phone,@RequestParam ("birthDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date birthDate  ,
+			@RequestParam("phone") String phone,@RequestParam ("birthDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date birthDate  ,@RequestParam("file") MultipartFile file, 
 			RedirectAttributes redirAttrs) {
 		UserEntity olduser = userrepo.findByUsername(getUserUsername());
 		UserEntity newuser =new UserEntity();
+			String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+	    	if(FileName.contains("..")) {
+	    		System.out.println("not a proper file ");
+	    	}
+	    	try {
+				newuser.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+				System.out.println("cv");
+			} catch (IOException e) {
+				System.out.println("dowiw");
+				e.printStackTrace();
+			}
+		
+				
 		 newuser.setUsername(username);
 		 newuser.setEmail(email);
 			UserEntity existingMail = userrepo.findByEmail(newuser.getEmail());

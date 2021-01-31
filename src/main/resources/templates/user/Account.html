@@ -152,7 +152,7 @@
 								<div class="tab-content">
 								  <div class="tab-pane container p-0 active" id="services-1">
 								  	<h3><a href="#">Update Profile</a></h3>
-								  	<form action="#" method="POST" th:action="@{/user/upd_account}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+								  	<form action="#" method="POST" th:action="@{/user/upd_account}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()" enctype="multipart/form-data">
 				       				 <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
 				                      <div class="row">
 				                        <div class="col-md-12">
@@ -187,6 +187,14 @@
 				                        		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" > 		
 				                          </div>
 				                         </div>
+				                           <div class="col-md-12"> 
+	                    					  <div class="custom-file mb-3" >  
+						                         <div class="form-group">
+						                            <input type="file" name="file" class="custom-file-input"  id="validatedCustomFile" required>
+						                         </div>
+						                         <label class="custom-file-label" for="validatedCustomFile">Add user picture...</label>
+						                      </div>  
+						                      </div>
 				         
 				                        <div class="col-md-12">
 				                          <div class="form-group">

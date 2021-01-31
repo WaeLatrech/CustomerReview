@@ -75,7 +75,19 @@ public class AdminControler {
 	    return "admin/adduseradmin";
 	}
 	@PostMapping("/adduser")
-	public String UserregisterSuccess(@ModelAttribute("user") UserEntity user, Model model) {
+	public String UserregisterSuccess(@ModelAttribute("user") UserEntity user, Model model,@RequestParam("file")MultipartFile file ) {
+		String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+    	if(FileName.contains("..")) {
+    		System.out.println("not a proper file ");
+    	}
+    	try {
+			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+			System.out.println("cv");
+		} catch (IOException e) {
+			System.out.println("dowiw");
+			e.printStackTrace();
+		}
+	
 		service.createUserEntity(user);
 		
 		return this.AllUsers(model);
@@ -93,7 +105,7 @@ public class AdminControler {
 	    return "admin/upduseradmin";
 	}
 	@PostMapping("/upduseradmin/{id}")
-	public String EditSuucesUser( Model model ,@PathVariable("id") long id ,@RequestParam ("username") String username , @RequestParam ("email") String email , @RequestParam("password") String password, @RequestParam("phone") String phone,@RequestParam ("birthDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date birthDate,@RequestParam("Role") String Role  ) {
+	public String EditSuucesUser( Model model ,@PathVariable("id") long id ,@RequestParam ("username") String username , @RequestParam ("email") String email , @RequestParam("password") String password, @RequestParam("phone") String phone,@RequestParam ("birthDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date birthDate,@RequestParam("Role") String Role , @RequestParam("file") MultipartFile file  ) {
  
 		 UserEntity user =new UserEntity();
 		 user.setUsername(username);
@@ -102,6 +114,18 @@ public class AdminControler {
 		 user.setPhone(phone);
 		 user.setBirthDate(birthDate);
 		 user.setRole(Role);
+		 String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+	    	if(FileName.contains("..")) {
+	    		System.out.println("not a proper file ");
+	    	}
+	    	try {
+				user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+				System.out.println("cv");
+			} catch (IOException e) {
+				System.out.println("dowiw");
+				e.printStackTrace();
+			}
+		
 		 
 		 service.modifyUserEntity(id, user);
 		return this.AllUsers(model);

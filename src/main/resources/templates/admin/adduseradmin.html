@@ -30,7 +30,7 @@
                     		<div class="row no-gutters">
     							<div align="center" class="contact-wrap  ">
                     				<h3 class="mb-4">Add User</h3>
-									<form method="POST" th:action="@{/adduser}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+									<form method="POST" th:action="@{/adduser}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()" enctype="multipart/form-data">
 										<div class="row">
                         					<div class="col-md-12">
                           						<div class="form-group">
@@ -63,6 +63,14 @@
                         							<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" > 		
                           						</div>
                          					</div>
+                         					 <div class="col-md-12"> 
+	                    					  <div class="custom-file mb-3" >  
+						                         <div class="form-group">
+						                            <input type="file" name="file" class="custom-file-input"  id="validatedCustomFile" required>
+						                         </div>
+						                         <label class="custom-file-label" for="validatedCustomFile">Add user picture...</label>
+						                      </div>  
+						                      </div>
 					                        <div class="col-md-12">
 					                          <div class="form-group">
 					                            <input type="submit" name="submit" id="submit" value="Sign up" class="btn btn-primary sign-up">

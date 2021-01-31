@@ -85,7 +85,7 @@
 	              		<ul class="comment-list">
 	            			<li class="">
 			                  <div class="vcard bio">
-			                    <img src="../../images/person_1.jpg" alt="Image placeholder">
+			                    <img  th:src="*{'data:img/png;base64,'+{product.userp.imageU}}" alt="Image placeholder">
 			                  </div>
 			                  <div class="comment-body">
 			                    <h3 th:text=${product.userp.username}></h3>
@@ -175,7 +175,7 @@
 	                <li class="comment">
 	                
 	                  <div class="vcard bio" >
-	                    <img src="../../images/person_1.jpg" alt="Image placeholder">
+	                    <img  th:src="*{'data:img/png;base64,'+{avis.user.imageU}}"  alt="Image placeholder">
 	                  </div>
 	                 
 	                  <div class="comment-body">

@@ -1,5 +1,7 @@
 package projet.rest.data.endpoints;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -221,6 +224,7 @@ public class Controlerr {
 	    return "redirect:/admin/home";
 	}
 	
+	
 	@GetMapping("/Sign-up")
 	public String SignUp(Model model) {
 	    
@@ -234,7 +238,47 @@ public class Controlerr {
 		model.addAttribute("user",userentity);
 		return "Other/Sign-up";
 	}
+	//*********************************************************************
 	UserRepository userrepo;
+	ConfirmationTokenRepository conftrepo ;
+	
+	@PostMapping("/Sign-up")
+	public String UserregisterSuccess(@ModelAttribute("user") UserEntity user, RedirectAttributes redirAttrs, @RequestParam("file") MultipartFile file) {
+		String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+    	if(FileName.contains("..")) {
+    		System.out.println("not a proper file ");
+    	}
+    	try {
+			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+			System.out.println("cv");
+		} catch (IOException e) {
+			System.out.println("dowiw");
+			e.printStackTrace();
+		}
+		UserEntity existingMail = userrepo.findByEmail(user.getEmail());
+		UserEntity existingUsername = userrepo.findByUsername(user.getUsername());
+        if(existingMail != null)
+        {	redirAttrs.addFlashAttribute("error", "mail already exists");
+        	return "redirect:/Sign-up";
+        }
+        else if(existingUsername != null)
+        {	redirAttrs.addFlashAttribute("error", "Username already exists");
+        	return "redirect:/Sign-up";
+        }
+        else
+        {
+        	service.createUserEntity(user);
+            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+            conftrepo.save(confirmationToken);
+            String text="To confirm your account, please click here : "
+                    +"http://localhost:9090/confirm-account/"+confirmationToken.getConfirmationToken();
+            SendEmailService.verifyEmail(user.getEmail(),"Mail Verified!",text);
+           redirAttrs.addFlashAttribute("success", "Account created! Check your mail to activate Your Account");
+            return "redirect:/Login";
+  }
+
+	}
+	/*	UserRepository userrepo;
 	ConfirmationTokenRepository conftrepo ;
 	
 	@PostMapping("/Sign-up")
@@ -261,8 +305,8 @@ public class Controlerr {
             return "redirect:/Login";
   }
 
-	}
-
+	}*/
+	//*******************************************************************
 	@GetMapping("/confirm-account/{confirmationToken}")
     public String confirmUserAccount(@PathVariable String confirmationToken, RedirectAttributes redirAttrs)
     {	

@@ -106,6 +106,8 @@ public class UserServiceImp implements UserService {
             oldUser.setBirthDate(newUser.getBirthDate());
         if (newUser.getRole() != null)
             oldUser.setRole(newUser.getRole());
+        if (newUser.getImageU() != null)
+            oldUser.setImageU(newUser.getImageU());
         reposUser.save(oldUser);
         //return reposUser.save(oldUser); // 
     }

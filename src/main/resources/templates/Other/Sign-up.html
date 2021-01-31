@@ -99,7 +99,7 @@
                   <div class="contact-wrap w-100 p-md-5 p-4">
                     <h3 class="mb-4">Sign up</h3>
 
-                    <form method="POST" th:action="@{/Sign-up}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="valider()">
+                    <form method="POST" th:action="@{/Sign-up}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="valider()" enctype="multipart/form-data">
 		    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
           
                       <div class="row">
@@ -134,6 +134,14 @@
                           <div class="form-group">
                         		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" required> 		
                           </div>
+                         </div>
+                            <div class="col-md-12"> 
+	                      <div class="custom-file mb-3" >  
+	                         <div class="form-group">
+	                            <input type="file" name="file" class="custom-file-input"  id="validatedCustomFile" required>
+	                         </div>
+	                         <label class="custom-file-label" for="validatedCustomFile">Add photo for your product...</label>
+	                      </div>  
                          </div>
                         <div class="col-md-12">
                           <div class="form-group">
