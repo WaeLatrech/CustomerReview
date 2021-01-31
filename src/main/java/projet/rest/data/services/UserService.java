@@ -21,8 +21,8 @@ public interface UserService {
     List<CategoryEntity> getAllCategories() ; 
     CategoryEntity getCategoryById (int s) ; 
     CategoryEntity createCategory ( CategoryEntity catEntity) ; 
-    
     CategoryEntity deleteCategoryEntity( int  id ) ; 
+    List<ProductEntity> getProductsByCategory(String Title)  ; 
     
     /**produit**/
     List<ProductEntity> getAllProduct() ; 

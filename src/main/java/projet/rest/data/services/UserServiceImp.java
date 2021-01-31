@@ -122,7 +122,20 @@ public class UserServiceImp implements UserService {
         return reposCat.findAll() ;
     }
 
- 
+	@Override
+	public List<ProductEntity> getProductsByCategory(String Title) {
+		List<ProductEntity>	 products = reposProduct.findAll();
+		List<ProductEntity>  productbycat = new ArrayList<ProductEntity>();
+		for(ProductEntity p : products )
+		{
+			if(p.getCatname().equalsIgnoreCase(Title))
+				productbycat.add(p);
+			
+		}
+	return productbycat;
+	}
+
+
 
     @Override
     public CategoryEntity getCategoryById(int s) {

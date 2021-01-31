@@ -81,7 +81,7 @@ public class UserController {
 	public String userindex(Model model,RedirectAttributes redirAttrs) {
 				
 		if (CheckRole().equals("NOTVERIFIED")) 
-			{System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$ aaaaaaaaaaaaaaaaa");
+			{
 			return "redirect:/logout";
 	    	}
 		List <ProductEntity> products = service.getAllProduct();
@@ -96,31 +96,32 @@ public class UserController {
 	    model.addAttribute("review", review);
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
-
+	    /**** average ****/
+	    List<UserEntity> users = service.getAllUserEntity() ; 
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("reviewss" , AllReviews)  ; 
+	    model.addAttribute("users", users);
+	    model.addAttribute("products", products);
+	    model.addAttribute("categories", categories);
 	    	
 	    return "user/userindex";
 	}
 
 	
-	@GetMapping("/Products")
-	public String AllProducts(Model model ) { 
-		List <ProductEntity> products = service.getAllProduct();
-		ProductEntity product = new ProductEntity();
-		model.addAttribute("product", product);
-		model.addAttribute("products", products);
+    @GetMapping("/Products/{title}")
+	public String AllProducts(Model model , @PathVariable("title") String title) { 
+		
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
-		List <CategoryEntity> categories = service.getAllCategories() ;
-			CategoryEntity category = new CategoryEntity();
-			model.addAttribute("category", category);
-			if(categories.isEmpty()==false)
-			{
-			model.addAttribute("categories",categories);
-		    return "user/products";
-		}
-			else {
-			
-		return "user/productsnotfounds";}
+		 List<CategoryEntity> cats = service.getAllCategories() ; 
+		    
+			ProductEntity product = new ProductEntity();
+			model.addAttribute("product", product);
+			List <ProductEntity> products  = service.getProductsByCategory(title)  ; 
+			model.addAttribute("products", products);
+			model.addAttribute("categories", cats );
+		
+			return "Other/products" ; 
 	}
 	
 	@GetMapping("/add-product")
@@ -203,6 +204,9 @@ public class UserController {
 	public String Account(Model model) {
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
+		AvisEntity avis = new AvisEntity();
+		model.addAttribute("avis",avis);
+		
 	    return "user/Account";
 	}
  	ConfirmationTokenRepository conftrepo ;

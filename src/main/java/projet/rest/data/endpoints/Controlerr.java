@@ -65,34 +65,39 @@ public class Controlerr {
 	    List <AvisEntity> reviews = AllReviews.subList(Math.max(AllReviews.size() - 9, 0), AllReviews.size());
 	    model.addAttribute("reviews", reviews);
 	    model.addAttribute("review", review);
+	    /**** average ****/
+	    List<UserEntity> users = service.getAllUserEntity() ; 
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("reviewss" , AllReviews)  ; 
+	    model.addAttribute("users", users);
+	    model.addAttribute("products", products);
+	    model.addAttribute("categories", categories);
+	    
+	    
 	    return "/index";
 	}
 
-    @GetMapping("/Products")
-	public String AllProducts(Model model ) { 
+
+    @GetMapping("/Products/{title}")
+	public String AllProducts(Model model , @PathVariable("title") String title) { 
 
 	    if (CheckRole().equals("USER")) {
-	        return "redirect:/user/Products";
+	        return "redirect:/user/Products/"+title;
 	    }
 	    else if (CheckRole().equals("ADMIN")) {
 	        return "redirect:/admin/home";
 	    }
-		List <ProductEntity> products = service.getAllProduct();
+		//List <ProductEntity> products = service.getAllProduct();
+	    List<CategoryEntity> cats = service.getAllCategories() ; 
+	    
 		ProductEntity product = new ProductEntity();
 		model.addAttribute("product", product);
+		List <ProductEntity> products  = service.getProductsByCategory(title)  ; 
 		model.addAttribute("products", products);
-		List <CategoryEntity> categories = service.getAllCategories() ;
-			CategoryEntity category = new CategoryEntity();
-			model.addAttribute("category", category);
-			if(categories.isEmpty()==false)
-			{
-			model.addAttribute("categories",categories);
-		    return "Other/products";
-		}
-			else {
-				
-		return "Other/productsnotfounds";}
-	}
+		model.addAttribute("categories", cats );
+	
+		return "Other/products" ; 
+    }
     /******************************************/
     @GetMapping("/add-review/{id}")
 	public String addReview(Model model,@PathVariable int id ) {
