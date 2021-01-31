@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Your Advancer - Home</title>
+    <title>Your Advancer - Account</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../../css/bootstrap.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 		    <div class="container">
 				<div class="row justify-content-between">
 						<div class="col-3 d-flex align-items-center">
-							<a class="navbar-brand d-flex" href="">
+							<a class="navbar-brand d-flex" href="/user/home">
 								<div class="icon d-flex align-items-center justify-content-center">
 									<img src="../../static/images/logoooo.png" alt="logo" style="width:40px;">
 								</div>Your Advancer
@@ -67,7 +67,7 @@
          		</div>
 		      	<div class="collapse navbar-collapse" id="ftco-nav">
 			        <ul class="navbar-nav mr-auto">
-			        	<li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+			        	<li class="nav-item active"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
 			        	<li class="nav-item"><a href="/user/Products" class="nav-link">Our products</a></li>
 			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
@@ -128,209 +128,98 @@
 		  </div>
 		</section>
 
-		 <section class="ftco-section testimony-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Testimonies</span>
-            <h2>Recent reviews &amp; Feedbacks</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item" th:each="review : ${reviews}">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4" th:value="${review.comment}" th:text="${review.comment}">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../images/person_1.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name" th:value="${review.username}" th:text="${review.username}"></p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-   	
-   
-
-    <section class="ftco-counter" id="section-counter">
-    	<div class="container">
-				<div class="row">
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-              	<div class="icon"><span class="fa fa-calendar"></span></div>
-                <strong class="number" data-number="45">0</strong>
-              	<span>Years of Experienced</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-              	<div class="icon"><span class="fa fa-briefcase"></span></div>
-                <strong class="number" data-number="8500">0</strong>
-              	<span>Project completed</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-              	<div class="icon"><span class="fa fa-users"></span></div>
-                <strong class="number" data-number="242">0</strong>
-              	<span>Happy Clients</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-              	<div class="icon"><span class="fa fa-bar-chart"></span></div>
-                <strong class="number" data-number="30">0</strong>
-              	<span>Business Partners</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    	</div>
-    </section>
-
-  
-
-      <section class="ftco-section" id="about">
-      <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">We explain the concept</span>
-            <h2>About us</h2>
+	 <section class="ftco-section">
+    	<div class="container-fluid">
+    		<div class="row justify-content-center mb-5">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4">My Account</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 services ftco-animate">
-            <img src="../../../../static/images/Document.png"  style="height: 550px ; width: 700px; float: right;">
-          </div>
-          
-          <div class="col-md-6 services ftco-animate">
-            <div class="d-block d-flex">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-assistive-listening-systems" aria-hidden="true"></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">Concept</h3>
-                <p>Your Advancer is the leading destination for customer ratings and reviews of products. 
-                  Consumers find ratings and read reviews to ensure they buy from the best companies.</p>
-                
-              </div>
-              
-            </div>
-            <div class="d-block d-flex">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-assistive-listening-systems" aria-hidden="true"></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">Idea</h3>
-                <p>Because « 85 % des consommateurs font autant confiance aux avis en ligne qu’aux recommandations personnelles » 
-                  – <strong>Bright Local.</strong><br>These statistics and your personal experience should bring you to the conclusion that a
-                   web review service is in high demand 
-                  now and can be a driving link in creating a chain between customers and businesses.</p>
-                
-              </div>
-              
-            </div>
-            
-            <div class="d-block d-flex ">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-star" aria-hidden="true"></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">Reviews</h3>
-                <p>The review should be based on your own experience and that you are in no way affiliated with this business,
-                  No incentive or payment has been provided from any company to write your opinion..</p>
-               
-              </div>
-           
-            </div> 
+        	<div class="col-lg-9">
+		  			<div class="row tabulation mt-4 ftco-animate">
+		  				<div class="col-md-4">
+								<ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
+								  <li class="nav-item text-left">
+								    <a class="nav-link active py-4" data-toggle="tab" href="#services-1"><span class="fa fa-address-card mr-2"></span> Update Profile</a>
+								  </li>
+								  <li class="nav-item text-left">
+								    <a class="nav-link py-4" data-toggle="tab" href="#services-2"><span class="fa fa-comments mr-2"></span> My Reviews</a>
+								  </li>
+								</ul>
+							</div>
+							<div class="col-md-8 pl-md-4">
+								<div class="tab-content">
+								  <div class="tab-pane container p-0 active" id="services-1">
+								  	<h3><a href="#">Update Profile</a></h3>
+								  	<form action="#" method="POST" th:action="@{/user/upd_account}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+				       				 <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+				                      <div class="row">
+				                        <div class="col-md-12">
+				                          <div class="form-group">
+				                        <input type="text" class="form-control" name="username" id="username" th:field="*{username}" placeholder="Username">
+				                          </div>
+				                        </div>
+				                         <div class="col-md-12"> 
+				                          <div class="form-group">
+				                            <input type="password" class="form-control" name="password" id="password" th:field="*{password}" placeholder="Password">
+				                          </div>
+				                        </div>
+				                           <div class="col-md-12"> 
+				                          <div class="form-group">
+				                            <input type="password" class="form-control" name="confirm_password" id="confirm_password"  placeholder="confirm password" onkeyup="check_pass()"><br/>
+				                            <span id="message"></span>
+				                          </div>
+				                        </div>
+				                        <div class="col-md-12"> 
+				                          <div class="form-group">
+				                            <input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Email">
+				                          </div>
+				                        </div>
+				                        <div class="col-md-12">
+				
+				                          <div class="form-group">
+				                           <input type="text" class="form-control" name="phone" id="phone" th:field="*{phone}" placeholder="Phone">
+				                          </div>
+				                        </div>
+				                        <div class="col-md-12">
+				                          <div class="form-group">
+				                        		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" > 		
+				                          </div>
+				                         </div>
+				         
+				                        <div class="col-md-12">
+				                          <div class="form-group">
+				                            <input type="submit" name="submit" id="submit" value="Save" class="btn btn-primary sign-up">
+				                            <div class="submitting"></div>
+				                          </div>
+				                        </div>
+				                      </div>
+				                    </form>
+									<script src="../../js/passwd.js"></script>
+								  </div>
+								  <div class="tab-pane container p-0 fade" id="services-2">
+								  	<h3><a href="#">My Reviews</a></h3>
+								  	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+								  	<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+								  	<ul>
+								  		<li><span class="fa fa-check"></span>The Big Oxmox advised her not to do so</li>
+								  		<li><span class="fa fa-check"></span>Far far away, behind the word mountains</li>
+								  		<li><span class="fa fa-check"></span>Separated they live in Bookmarksgrove</li>
+								  		<li><span class="fa fa-check"></span>She packed her seven versalia</li>
+								  		<li><span class="fa fa-check"></span>Little Blind Text didn’t listen</li>
+								  	</ul>
+								  </div>
 
-          </div>
-         
-          <div class="col-md-6 services ftco-animate mt-3">
-            <div class="d-block d-flex">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-star" aria-hidden="true"></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">Rules</h3>
-                <p>all false review constitutes a violation of the terms of use of our platform ,This means that any attempt to fake reviews can lead to legal action against you. So be careful</p>
-              </div>
-            </div> 
-            <div class="d-block d-flex ">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-barcode" aria-hidden="true"  ></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">Products</h3>
-                <p>Share your product experiences to help others make better decisions and empower businesses to improve.</p>
-              </div>
-            </div>  
-            <div class="d-block d-flex ">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="fa fa-barcode" aria-hidden="true"  ></span>
-              </div>
-              <div class="media-body pl-3">
-                <h3 class="heading">goal</h3>
-                <p>our site is a community of passionate people, sharing their product and service experiences.
-                  Our community of reviewers are a dedicated bunch who want to help you discover what's right for you.</p>
-              </div>
-            </div>   
-          </div>
-          <div class="col-md-6 services ftco-animate">
-            <img src="../../../../static/images/people.png"  style="height: 470px ; width: 750px; float: left ;">
-          </div>
-        </div>
-      </div>
-    </section>
-
-   
-		
-		<section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">New Products</span>
-            <h2>Latest products from our customer</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate" th:each="prod : ${prods}">
-            <div class="blog-entry align-self-stretch">
-              <a th:href="@{/user/add-review/{id}(id=${prod.idp})}"> <img alt="" th:src="*{'data:img/png;base64,'+{prod.img}}" style="width: 280px; height: 250px; ">
-              </a>
-              <div class="text p-3">
-              	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(images/person_2.jpg);"></div>
-              		<div class="desc pl-3">
-              			Posted By <i th:value="${prod.username}" th:text="${prod.username}"></i>
-              			<span th:value="${prod.dateofcreation}" th:text="${prod.dateofcreation}"></span>
-              		</div>
-              	</div>
-                <h3 class="heading"><a href="#" th:value="${prod.nom}" th:text="${prod.nom}"></a></h3>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 d-flex align-items-stretch">
+						<div class="img" style="background-image: url(images/about.jpg);"></div>
+					</div>
+				</div>
+    	</div>
     </section>
 
   

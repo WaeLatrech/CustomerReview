@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,6 +33,8 @@ private Date birthDate;
 private String email;
 private String phone;
 private String Role;
+@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+private List<AvisEntity> reviews ;
 @ManyToMany(mappedBy = "LikedBy", cascade = CascadeType.REMOVE)
 private List<AvisEntity> Likedavis;
 @ManyToMany(mappedBy = "dislikedBy", cascade = CascadeType.REMOVE)

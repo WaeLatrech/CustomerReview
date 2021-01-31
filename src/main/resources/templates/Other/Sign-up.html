@@ -99,18 +99,18 @@
                   <div class="contact-wrap w-100 p-md-5 p-4">
                     <h3 class="mb-4">Sign up</h3>
 
-                    <form method="POST" th:action="@{/Sign-up}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+                    <form method="POST" th:action="@{/Sign-up}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="valider()">
 		    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
           
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                        <input type="text" class="form-control" name="username" id="username" th:field="*{username}" placeholder="Username">
+                        <input type="text" class="form-control" name="username" id="username" th:field="*{username}" placeholder="Username" required>
                           </div>
                         </div>
                          <div class="col-md-12"> 
                           <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="password" th:field="*{password}" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="password" th:field="*{password}" placeholder="Password" required>
                           </div>
                         </div>
                            <div class="col-md-12"> 
@@ -121,18 +121,18 @@
                         </div>
                         <div class="col-md-12"> 
                           <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Email">
+                            <input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Email" required>
                           </div>
                         </div>
                         <div class="col-md-12">
 
                           <div class="form-group">
-                           <input type="text" class="form-control" name="phone" id="phone" th:field="*{phone}" placeholder="Phone">
+                           <input type="text" class="form-control" name="phone" id="phone" th:field="*{phone}" placeholder="Phone" required>
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                        		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" > 		
+                        		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" required> 		
                           </div>
                          </div>
                         <div class="col-md-12">

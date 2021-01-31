@@ -247,7 +247,7 @@
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a review</h3>
-                <form action="#" class="p-5 bg-light" th:action="@{/add-review/{id}(id=${product.idp})}"  method="post">
+                <form action="#" class="p-5 bg-light" th:action="@{/user/add-review/{id}(id=${product.idp})}"  method="post">
 
                       	<label class="mb-4">Quality price *</label><br/>
                         <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note"  th:value="${avis.QalityPrice}" name="QalityPrice">
@@ -431,7 +431,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Your Advancer <i class="fa fa-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

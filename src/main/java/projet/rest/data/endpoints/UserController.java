@@ -81,7 +81,7 @@ public class UserController {
 	public String userindex(Model model,RedirectAttributes redirAttrs) {
 				
 		if (CheckRole().equals("NOTVERIFIED")) 
-			{
+			{System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$ aaaaaaaaaaaaaaaaa");
 			return "redirect:/logout";
 	    	}
 		List <ProductEntity> products = service.getAllProduct();
@@ -134,8 +134,8 @@ public class UserController {
 		model.addAttribute("categories",categories);
 		CategoryEntity cat = new CategoryEntity ();
 		model.addAttribute("category",cat);
-		//UserEntity user = userrepo.findByUsername(getUserUsername());
-		//model.addAttribute("user",user);
+		UserEntity user = userrepo.findByUsername(getUserUsername());
+		model.addAttribute("user",user);
 		return "user/add-product";
 	}
 	
@@ -153,28 +153,35 @@ public class UserController {
 	@GetMapping("/add-review/{id}")
 	public String addReview(Model model,@PathVariable int id ) {
 		AvisEntity a = new AvisEntity() ;
-		model.addAttribute("avis",a);
+		
+		
 		ProductEntity p = service.getProductById(id);
 		model.addAttribute("product",p);
 		UserEntity user = userrepo.findByUsername(getUserUsername());
+	a.setUser(user);
 		model.addAttribute("user",user);
+		model.addAttribute("avis",a);
 		return "user/add-review";
+		
 	}
 	@PostMapping("/add-review/{id}")
-	public String ReviewSuccess(@ModelAttribute("avis") AvisEntity a , @ModelAttribute("product") ProductEntity p) {
+	public String ReviewSuccess(@ModelAttribute("avis") AvisEntity a , @PathVariable("id") int idp ) {
 		/*service.createProduct(a);*/
-		int i =p.getIdp();
-		System.out.println(" i = "+i);
+		a.setUser(userrepo.findByUsername(getUserUsername()));
+		a.getUser().getReviews().add(a);
+		System.out.println("userid : "+a.getUser().getId());
+		System.out.println(" i = "+idp);
 		try {
 			//a.setProduct(p);
-			service.createAvis(i, a);
+			service.createAvis(idp, a);
 			//a.toString();
 		}
 		catch(NoSuchElementException e) {
 			return "user/ProductNotFound";
 		}
-		p.setRate(service.rate(i));
-		return "user/reviewcreated";
+		ProductEntity p = service.getProductById(idp);
+		p.setRate(service.rate(idp));
+		return "redirect:/user/add-review/"+idp;
 	}
 
 	
@@ -234,7 +241,7 @@ public class UserController {
 		 
 		 setUserUsername(newuser.getUsername(), newuser.getPassword());
 		 
-		 if (!newuser.getEmail().equals("")) {
+		 if (!newuser.getEmail().equals(olduser.getEmail())) {
 			 ConfirmationToken confirmationToken = new ConfirmationToken(olduser);
 	            conftrepo.save(confirmationToken);
 	            String text="To confirm your email, please click here : "

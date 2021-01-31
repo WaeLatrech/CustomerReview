@@ -15,7 +15,7 @@ function check_pass() {
 
 function valider() {
     // if the fill is vide
-    if((document.fsignup.nom.value != "")&&(document.fsignup.email.value != "")&&(document.fsignup.password.value != "")&&(document.fsignup.birthDate.value != "")&&(document.fsignup.phone.value != "")) {
+    if((document.fsignup.username.value != "")&&(document.fsignup.email.value != "")&&(document.fsignup.password.value != "")&&(document.fsignup.birthDate.value != "")&&(document.fsignup.phone.value != "")) {
       // then submit form
       document.fsignup.submit();
       return true;
