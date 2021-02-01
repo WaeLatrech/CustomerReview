@@ -64,13 +64,14 @@
 			        <ul class="navbar-nav mr-auto">
 			        	<li class="nav-item"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-<li class="nav-item dropdown">
-		        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
-		        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
-			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
-	           		</div>
-		        	</li>			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
-			        </ul>
+						<li class="nav-item dropdown">
+			        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
+			        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
+				           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
+		           		</div>
+			        	</li>			        	
+			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+				     </ul>
 		      	</div>
 		    </div>
 		  </nav>
@@ -104,7 +105,7 @@
 			                    	<a class="nav-link py-4"><strong> <i class="fa fa-align-justify mr-3" aria-hidden="true"></i>Categories</strong></a>
 			                  	</li>
 			                  	<li class="nav-item text-left">
-			                		<a class="nav-link active py-4" href="/products/${category.Title}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"><span class="fa fa-mobile mr-3" aria-hidden="true"></span> </a>
+			                		<a class="nav-link active py-4" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"><span class="fa fa-mobile mr-3" aria-hidden="true"></span> </a>
 			                  	</li>
 			                </ul>
               			</div>

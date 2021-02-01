@@ -106,7 +106,7 @@
                   </li>
                   <li class="nav-item text-left">
 
-                <a class="nav-link active py-4" href="/products/${category.Title}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"><span class="fa fa-mobile mr-3" aria-hidden="true"></span> </a>
+                <a class="nav-link active py-4" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"><span class="fa fa-mobile mr-3" aria-hidden="true"></span> </a>
                   </li>
                 </ul>
               </div>

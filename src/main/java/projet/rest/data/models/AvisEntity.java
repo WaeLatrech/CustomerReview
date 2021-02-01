@@ -39,7 +39,7 @@ public  class AvisEntity {
     private float note;
     private String comment;
    @JsonIgnore
- @ManyToOne( cascade = CascadeType.REMOVE )
+ @ManyToOne( cascade = CascadeType.DETACH )
  UserEntity user;
     @ManyToMany
     @JoinTable(name = "LikedBy")

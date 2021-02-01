@@ -1,6 +1,5 @@
 package projet.rest.data.models;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class ProductEntity {
 	@Column(columnDefinition = "MEDIUMBLOB")
 	private String img;
 	@JsonIgnore
-@ManyToOne(cascade = CascadeType.REMOVE)
+@ManyToOne(cascade = CascadeType.DETACH)
 	UserEntity userp;
 private String description ;
 

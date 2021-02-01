@@ -70,11 +70,12 @@ public class Controlerr {
 	    model.addAttribute("review", review);
 	    /**** average ****/
 	    List<UserEntity> users = service.getAllUserEntity() ; 
-	    List<CategoryEntity> categories = service.getAllCategories() ; 
-	    model.addAttribute("reviewss" , AllReviews)  ; 
 	    model.addAttribute("users", users);
-	    model.addAttribute("products", products);
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
+	    model.addAttribute("reviewss" , AllReviews)  ; 
+	    model.addAttribute("products", products);
+	    
 	    
 	    
 	    return "/index";
@@ -84,21 +85,17 @@ public class Controlerr {
     @GetMapping("/Products/{title}")
 	public String AllProducts(Model model , @PathVariable("title") String title) { 
 
-	    if (CheckRole().equals("USER")) {
+	    if (CheckRole().equals("USER")||CheckRole().equals("ADMIN")) {
 	        return "redirect:/user/Products/"+title;
 	    }
-	    else if (CheckRole().equals("ADMIN")) {
-	        return "redirect:/admin/home";
-	    }
-		//List <ProductEntity> products = service.getAllProduct();
-	    List<CategoryEntity> cats = service.getAllCategories() ; 
 	    
 		ProductEntity product = new ProductEntity();
 		model.addAttribute("product", product);
 		List <ProductEntity> products  = service.getProductsByCategory(title)  ; 
 		model.addAttribute("products", products);
-		model.addAttribute("categories", cats );
-	
+		List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
+	    
 		return "Other/products" ; 
     }
     /******************************************/
@@ -112,7 +109,9 @@ public class Controlerr {
 		
 		ProductEntity p = service.getProductById(id);
 		model.addAttribute("product",p);
-		
+		List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
+	    
 		return "Reviews/add-review";
 	}
    //****************************************************
@@ -125,6 +124,8 @@ public class Controlerr {
 	    else if (CheckRole().equals("ADMIN")) {
 	        return "redirect:/admin/home";
 	    }
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
 	    return "Other/contact";
 	}
 	
@@ -137,7 +138,7 @@ public class Controlerr {
 	}
 	
 	@GetMapping("/Login")
-	public String login() {
+	public String login(Model model) {
 
 	    if (CheckRole().equals("USER")) {
 	        return "redirect:/user/home";
@@ -145,7 +146,8 @@ public class Controlerr {
 	    else if (CheckRole().equals("ADMIN")) {
 	        return "redirect:/admin/home";
 	    }
-	    
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
 	    return "Other/login";
 	}
 	
@@ -233,7 +235,8 @@ public class Controlerr {
 	    }else if (CheckRole().equals("ADMIN")) {
 	        return "redirect:/admin/home";
 	    }
-
+	    List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
 		UserEntity userentity = new UserEntity();
 		model.addAttribute("user",userentity);
 		return "Other/Sign-up";

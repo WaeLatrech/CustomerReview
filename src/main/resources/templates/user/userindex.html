@@ -68,12 +68,13 @@
 			        <ul class="navbar-nav mr-auto">
 			        	<li class="nav-item active"><a href="" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-<li class="nav-item dropdown">
+					<li class="nav-item dropdown">
 		        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
 		        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
 			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
 	           		</div>
-		        	</li>			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+		        	</li>			        	
+		        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
 			        </ul>
 		      	</div>
 		    </div>
@@ -358,8 +359,8 @@
             <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+                <li><a href="/Products/Smartphone" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
+                <li><a href="/Products/Washer%20Machine" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
               </ul>
             </div>
           </div>

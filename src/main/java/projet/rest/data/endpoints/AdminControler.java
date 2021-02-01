@@ -1,7 +1,7 @@
 package projet.rest.data.endpoints;
 
 import java.io.IOException;
-
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -90,13 +91,13 @@ public class AdminControler {
 	
 		service.createUserEntity(user);
 		
-		return this.AllUsers(model);
+		return "redirect:/admin/userlist";
 	}
 	@GetMapping("/deluser/{id}")
 	public String DelUsers(@PathVariable("id") Long id, Model model) {
 	    service.DelTokenByIdUser(id);
 		service.deleteUserEntity(id);
-		return this.AllUsers(model);
+		return "redirect:/admin/userlist";
 	}
 	@GetMapping("/upduser/{id}")
 	public String UpdUsers(@PathVariable("id") int id, Model model) {
@@ -128,7 +129,7 @@ public class AdminControler {
 		
 		 
 		 service.modifyUserEntity(id, user);
-		return this.AllUsers(model);
+		 return "redirect:/admin/userlist"; 
 	}
 	
 	/*Categories*/
@@ -153,8 +154,15 @@ public class AdminControler {
 		return this.AllCategoris(model);
 	}
 	@GetMapping("/delcategorie/{id}")
-	public String DelCategories(@PathVariable("id") int id, Model model) {
-		service.deleteCategoryEntity(id);
+	public String DelCategories(@PathVariable("id") int id, Model model ,RedirectAttributes redirAttrs) {
+		List<ProductEntity> prods= service.getProductsByCategory(service.getCategoryById(id).getTitle());
+		if (prods.isEmpty())
+			service.deleteCategoryEntity(id);
+		else {
+			redirAttrs.addFlashAttribute("error", "Can't delete Category which contains products");
+			return "redirect:/admin/categorielist";
+		
+		}
 		return "redirect:/admin/categorielist";
 	}
 	
@@ -222,7 +230,7 @@ public class AdminControler {
 				e.printStackTrace();
 			}
 		 service.modifyProduct(i, p1);
-		return this.AllProducts(model);
+		return "redirect:/admin/productlist";
 	}
 	
 	/*Reviews*/
@@ -249,7 +257,7 @@ public class AdminControler {
 	@GetMapping("/delreview/{id}")
 	public String DelReviews(@PathVariable("id") int id, Model model) {
 		service.deleteAvisEntity(id);
-		return this.AllReviews(model);
+		return "redirect:/admin/reviewlist";
 	    
 	}
 	
@@ -270,7 +278,7 @@ public class AdminControler {
 		 a.setComment(comment);
 		 
 		 service.modifyAvis(id, a);
-		return this.AllReviews(model);
+		return "redirect:/admin/reviewlist";
 	}
 	
 	

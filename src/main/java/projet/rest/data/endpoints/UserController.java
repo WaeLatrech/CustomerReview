@@ -86,13 +86,22 @@ public class UserController {
 			{
 			return "redirect:/logout";
 	    	}
+		/*else if (CheckRole().equals("ADMIN")) {
+			UserEntity admin = userrepo.findByUsername(getUserUsername());
+			model.addAttribute("admin",admin);
+			
+			 userindex
+<li class="nav-item"><a href="/admin/home" class="nav-link" th:text=${admin.role}> Home</a></li>
+}
+			 * */
+		
 		List <ProductEntity> products = service.getAllProduct();
 	    ProductEntity prod = new ProductEntity();
 	    List <ProductEntity> prods = products.subList(Math.max(products.size() - 3, 0), products.size());
 	    model.addAttribute("prods", prods);
 	    model.addAttribute("prod", prod);
 	    List <AvisEntity> AllReviews = service.getAllReviews();
-	    AvisEntity review = new AvisEntity();
+	    AvisEntity review = new AvisEntity(); 
 	    List <AvisEntity> reviews = AllReviews.subList(Math.max(AllReviews.size() - 9, 0), AllReviews.size());
 	    model.addAttribute("reviews", reviews);
 	    model.addAttribute("review", review);
@@ -157,7 +166,9 @@ public class UserController {
 	public String addReview(Model model,@PathVariable int id ) {
 		AvisEntity a = new AvisEntity() ;
 		
-		
+		List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
+	    
 		ProductEntity p = service.getProductById(id);
 		model.addAttribute("product",p);
 		UserEntity user = userrepo.findByUsername(getUserUsername());
@@ -190,6 +201,9 @@ public class UserController {
 	public String Contact(Model model) {
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
+		List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
+	    
 	    return "user/contact";
 	}
 	
@@ -208,7 +222,9 @@ public class UserController {
 		model.addAttribute("user",user);
 		AvisEntity avis = new AvisEntity();
 		model.addAttribute("avis",avis);
-		
+		List<CategoryEntity> categories = service.getAllCategories() ; 
+	    model.addAttribute("categories", categories);
+	    
 	    return "user/Account";
 	}
  	ConfirmationTokenRepository conftrepo ;
@@ -225,14 +241,20 @@ public class UserController {
 	    		System.out.println("not a proper file ");
 	    	}
 	    	try {
-				newuser.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
-				System.out.println("cv");
-			} catch (IOException e) {
+	    		if(!FileName.isEmpty()) {
+	    			newuser.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+					System.out.println("cv");
+			
+	    		}
+	    		else {
+	    			newuser.setImageU(olduser.getImageU());
+	    		}
+						} catch (IOException e) {
 				System.out.println("dowiw");
 				e.printStackTrace();
 			}
 		
-				
+			
 		 newuser.setUsername(username);
 		 newuser.setEmail(email);
 			UserEntity existingMail = userrepo.findByEmail(newuser.getEmail());

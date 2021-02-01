@@ -43,9 +43,9 @@
 			
 			 <div th:each="product : ${products}">
 				<tr >		
-			    <td th:rowspan="${product.avis.size()+1}" th:utext="${product.nom}" ></td>
+			    <td th:rowspan="${product.avisss.size()+1}" th:utext="${product.nom}" ></td>
 			    
-			      <tr th:each="a : ${product.avis}">
+			      <tr th:each="a : ${product.avisss}">
 			  		<div>
 				   		<td  th:utext="${a.QalityPrice}" ></td>
 						<td th:utext="${a.cameraquality}" ></td>
