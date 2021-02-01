@@ -50,22 +50,25 @@
 		        <div class="req-button order-lg-last">
 		      		<a href="/user/add-product"><span class="fa fa-upload" aria-hidden="true"></span> Add product</a>
 	        	</div>
-	        	<!-- statiqueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee  -->
 		        <div class="dropdown order-lg-last ml-4 dark-text">
 			        <a  id="dropdownMenuButton" data-toggle="dropdown" class= " dark-text" aria-haspopup="true" aria-expanded="false">
 			          <i class="fa fa-user-circle-o"  style="font-size: 20px;" aria-hidden="true" ></i> welcome , <i th:value="${user.username}"  th:text="${user.username}"></i>     <i class="fa fa-chevron-down" aria-hidden="true"></i>   
 			        </a>
 	          		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			           <a class="dropdown-item" href="/logout"> <i class="fa fa-sign-out" ></i> Logout </a>
-			           <a class="dropdown-item" href="/user/update_user">  <i class="fa fa-refresh"></i> Update account</a>
+			           <a class="dropdown-item" href="/user/Account">  <i class="fa fa-refresh"></i> Account</a>
 	           		</div>
          		</div>
 		      	<div class="collapse navbar-collapse" id="ftco-nav">
 			        <ul class="navbar-nav mr-auto">
 			        	<li class="nav-item active"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-			        	<li class="nav-item"><a href="/user/Products" class="nav-link">Our products</a></li>
-			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+				<li class="nav-item dropdown">
+		        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
+		        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
+			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
+	           		</div>
+		        	</li>			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
 			        </ul>
 		      	</div>
 		    </div>
@@ -84,199 +87,228 @@
 		    </div>
 		</section>
 
-   	<section class="ftco-section ftco-degree-bg">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 order-lg-last ftco-animate">
-              <ul class="comment-list">
-            <li class="">
-            
-            <!-- hadhaaa elii zad l produit "l user" -->
-            
-                  <div class="vcard bio">
-                    <img src="../../images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                   <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta"><span class="fa fa-chevron-circle-down"></span> March 24, 2020 at 2:21pm</div>
-                </li>
-              </ul>
-          	<p style="">
-
-              <img src="../../static/images/1.jpg" alt="" class="img-fluid" style=" width: 450px ; height: 350px ;margin-left:70px  ">
-            </p>
-            <h2 class="mb-3" ></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-            <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-
-            
-                 
-
-                  <hr style="border:3px solid #f1f1f1">
-                <!--partie hedhi mazelt mouch kamela fibali demain bech nkamel nekhdemha -->
-                  <div class="row">
-                    <div class="side">
-                      <div>5 star</div>
-                    </div>
-                    <div class="middle">
-                      <div class="bar-container">
-                        <div class="bar-5"></div>
-                      </div>
-                    </div>
-                    <div class="side right">
-                      <div>150</div>
-                    </div>
-                    <div class="side">
-                      <div>4 star</div>
-                    </div>
-                    <div class="middle">
-                      <div class="bar-container">
-                        <div class="bar-4"></div>
-                      </div>
-                    </div>
-                    <div class="side right">
-                      <div>63</div>
-                    </div>
-                    <div class="side">
-                      <div>3 star</div>
-                    </div>
-                    <div class="middle">
-                      <div class="bar-container">
-                        <div class="bar-3"></div>
-                      </div>
-                    </div>
-                    <div class="side right">
-                      <div>15</div>
-                    </div>
-                    <div class="side">
-                      <div>2 star</div>
-                    </div>
-                    <div class="middle">
-                      <div class="bar-container">
-                        <div class="bar-2"></div>
-                      </div>
-                    </div>
-                    <div class="side right">
-                      <div>6</div>
-                    </div>
-                    <div class="side">
-                      <div>1 star</div>
-                    </div>
-                    <div class="middle">
-                      <div class="bar-container">
-                        <div class="bar-1"></div>
-                      </div>
-                    </div>
-                    <div class="side right">
-                      <div>20</div>
-                    </div>
-                  </div>
-                  
-                   <hr>
-            
-
-
-
-            <div class="pt-5 mt-5">
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="../../images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                  
-                  <!-- reviewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
-                  
-                    <h3>John Doe</h3>
-                    <div class="meta"><span class="fa fa-chevron-circle-down"></span> March 24, 2020 at 2:21pm</div>
-                   
-                    <table style="width:40%" class="stars">
- 
-                      <tr>
-                        <td class="heading">rapidity</td>
-                        <td>  <span class="fa fa-star checked "></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star-o"></span>
-                                          <span class="fa fa-star-o"></span></td>
-                        <td  class="percent">50%</td>
-                      </tr>
-                      <tr>
-                        <td class="heading">rapidity</td>
-                        <td>  <span class="fa fa-star checked "></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star-o"></span>
-                                          <span class="fa fa-star-o"></span></td>
-                        <td  class="percent">94%</td>
-                      </tr>
-                      <tr>
-                        <td class="heading">rapidity</td>
-                        <td>  <span class="fa fa-star checked "></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star checked"></span>
-                                          <span class="fa fa-star-o"></span>
-                                          <span class="fa fa-star-o"></span></td>
-                        <td  class="percent">80%</td>
-                      </tr>
-                    </table>
-                  
-                   <br>
-                   
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, 
-                    fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <br>
-
-                    
-                     <P>
-                      <a href="#" class="mr-4" ><span class="fa fa-thumbs-up" aria-hidden="true" ></span> Like </a>
-                      <a href="#" class="mr-4"><span class="fa fa-thumbs-down" aria-hidden="true"></span> Dislike</a>
-                      <a href="#" class="mr-4"><span class="fa fa-comment" aria-hidden="true"></span> report</a>
-                      <a href="#" class="mr-4" style="color: grey; "> 3 <span class="fa fa-thumbs-up" aria-hidden="true" ></span></a> 
-                      <a href="#" class="mr-4" style="color: grey "> 3 <span class="fa fa-thumbs-down " aria-hidden="true" ></span></a>  
-                      
-                   </p>
-                  </div>
-                </li>
-
-                
-              </ul>
-
+ 	<section class="ftco-section ftco-degree-bg" style="margin-left:30% !important" >
+	    	<div class="container-fluid ">
+	        	<div class="row">
+	          		<div class="col-lg-8 order-lg-last ftco-animate">
+	              		<ul class="comment-list">
+	            			<li class="">
+			                  <div class="vcard bio">
+			                    <img  th:src="*{'data:img/png;base64,'+{product.userp.imageU}}" alt="Image placeholder">
+			                  </div>
+			                  <div class="comment-body">
+			                    <h3 th:text=${product.userp.username}></h3>
+	                    		<div class="meta">
+	                    			<span class="fa fa-chevron-circle-down" th:text=${product.dateofcreation}></span>
+	                    		</div>
+	                    		</div>
+	                		</li>
+	              		</ul>
+	          			<p>
+							<h3 th:text=${product.nom} style="color:grey;"></h3>
+	              			<img th:src="*{'data:img/png;base64,'+{product.img}}" alt="" class="img-fluid" style=" width: 450px ; height: 350px ;margin-left:70px  ">
+	            
+	            			<h3 class="mb-3" >Description </h3>
+	          				<p  th:text=${product.description}></p>
+	                  		<hr >
+	                <!--partie hedhi mazelt mouch kamela fibali demain bech nkamel nekhdemha -->
+	                  <div class="row">
+	                    <div class="side">
+	                      <div>5 star</div>
+	                    </div>
+	                    <div class="middle">
+	                      <div class="bar-container">
+	                        <div class="bar-5"></div>
+	                      </div>
+	                    </div>
+	                    <div class="side right">
+	                      <div>150</div>
+	                    </div>
+	                    <div class="side">
+	                      <div>4 star</div>
+	                    </div>
+	                    <div class="middle">
+	                      <div class="bar-container">
+	                        <div class="bar-4"></div>
+	                      </div>
+	                    </div>
+	                    <div class="side right">
+	                      <div>63</div>
+	                    </div>
+	                    <div class="side">
+	                      <div>3 star</div>
+	                    </div>
+	                    <div class="middle">
+	                      <div class="bar-container">
+	                        <div class="bar-3"></div>
+	                      </div>
+	                    </div>
+	                    <div class="side right">
+	                      <div>15</div>
+	                    </div>
+	                    <div class="side">
+	                      <div>2 star</div>
+	                    </div>
+	                    <div class="middle">
+	                      <div class="bar-container">
+	                        <div class="bar-2"></div>
+	                      </div>
+	                    </div>
+	                    <div class="side right">
+	                      <div>6</div>
+	                    </div>
+	                    <div class="side">
+	                      <div>1 star</div>
+	                    </div>
+	                    <div class="middle">
+	                      <div class="bar-container">
+	                        <div class="bar-1"></div>
+	                      </div>
+	                    </div>
+	                    <div class="side right">
+	                      <div>20</div>
+	                    </div>
+	                  </div>
+	                  
+	                   <hr>
+	            
+	
+	
+	
+	            <div class="pt-5 mt-5"    >
+	            <h3> Reviews : </h3>
+	            <br>
+	              <ul class="comment-list" >
+	             <div  th:each="avis : ${product.avisss}">
+	              
+	                <li class="comment">
+	                	                 	                  <hr>
+	                	                 	                  <br>
+	                
+	                  <div class="vcard bio" >
+	                    <img  th:src="*{'data:img/png;base64,'+{avis.user.imageU}}"  alt="Image placeholder">
+	                  </div>
+	                 
+	                  <div class="comment-body">
+	                  <!-- reviewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+	                  
+	                    <h3 th:text=${avis.user.username}></h3>
+	                    <div class="meta"><span class="fa fa-chevron-circle-down" th:text="${avis.dateofcreation}"></span></div>
+	                   
+	                    <!--   <table style="width:40%" class="stars">
+	 
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent"></td>
+	                      </tr>
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent">94%</td>
+	                      </tr>
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent">80%</td>
+	                      </tr>
+	                    </table>
+	                  -->
+	                 <table>
+	                  <tr>
+	                  <td th:text="${product.category.carac1}" ></td>
+	                  <td th:text="${avis.c1}"></td>
+	                  </tr>
+	                    <tr>
+	                  <td th:text="${product.category.carac2}" > </td>
+	                  <td th:text="${avis.c2}"></td>
+	                  </tr>
+	                   <tr>
+	                  <td  th:text="${product.category.carac3}"> </td>
+	                  <td th:text="${avis.c3}"></td>
+	                  </tr>
+	                  
+	                       <tr>
+	                  <td  th:text="${product.category.carac4}"></td>
+	                  <td th:text="${avis.c4}"></td>
+	                  </tr>
+	                <tr>
+	                  <td  th:text="${product.category.carac5}"> </td>
+	                  <td th:text="${avis.c5}"></td>
+	                 </tr>
+	                  </table>
+	                  
+	                  
+	                   
+	                  
+	
+	                    
+	                     <P>
+	                      <a href="#" class="mr-4" cliked="false"><span class="fa fa-thumbs-up" aria-hidden="true" ></span> Like </a>
+	                      <a href="#" class="mr-4"><span class="fa fa-thumbs-down" aria-hidden="true"></span> Dislike</a>
+	                      <a href="#" class="mr-4"><span class="fa fa-comment" aria-hidden="true"></span> report</a>
+	                      <a href="#" class="mr-4" style="color: grey; " >  <span class="fa fa-thumbs-up" aria-hidden="true" th:text="${avis.nblike}" ></span></a> 
+	                      <a href="#" class="mr-4" style="color: grey "> <span class="fa fa-thumbs-down " aria-hidden="true" th:text="${avis.nbdislike}" ></span></a>  
+	                      
+	                   </p>
+	                  </div>
+	                  
+	                </li>
+	</div>
+	                
+	              </ul>
                  
               <!-- END comment-list -->
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a review</h3>
-                <form action="#" class="p-5 bg-light" th:action="@{/add-review/{id}(id=${product.idp})}"  method="post">
+                <form action="#" class="p-5 bg-light" th:action="@{/user/add-review/{id}(id=${product.idp})}"  method="post">
 
-                      	<label class="mb-4">Quality price *</label><br/>
-                        <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note"  th:value="${avis.QalityPrice}" name="QalityPrice">
-                        <label><span  id="demo"></span></label><br/><br/>
-                      
-                      	<label class="mb-4">Camera quality *</label><br/>
-                        <input type="range" min="0" max="5" value="3" class="cameraquality" id="note" th:value="${avis.cameraquality}" name="cameraquality">
-                        <label><span  id="demo"></span></label><br/><br/>
-
-                        <label  class="mb-4">Design *</label>
-                        <input type="range" min="0" max="5" value="3" class="design" id="note" th:value="${avis.design}" name="design">
-                        <label><span  id="demo"></span></label><br/><br/>
-                    
-                        <label class="mb-4">Durability *</label>
-                        <input type="range" min="0" max="5" value="3" class="durability" id="note" th:value="${avis.durability}" name="durability">
-                        <label><span  id="demo"></span></label><br/><br/>  
-                   
-                  <div class="form-group">
-                    <label for="TitleReview">Add photo about your experience (optional) </label>
-                    <input type="file" class="form-control" id="titleReview" >
-                  </div>
-           
-                  <div class="form-group">
-                    <label for="review">Your review *</label>
-                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" id="comment" name="comment"></textarea>
-                  </div>
-                 
-                
-
+    
+	                  
+	
+	                   
+	                      	<label class="mb-4" th:text="${product.category.carac1}"></label><br/>
+	                        <input type="range" min="0" max="5" value="3" class="c1" id="note"  th:value="${avis.c1}" name="c1">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	                      
+	                      	<label class="mb-4" th:text="${product.category.carac2}"></label><br/>
+	                        <input type="range" min="0" max="5" value="3" class="c2" id="note" th:value="${avis.c2}" name="c2">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	
+	                        <label  class="mb-4" th:text="${product.category.carac3}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c3" id="note" th:value="${avis.c3}" name="c3">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	                    
+	                        <label class="mb-4" th:text="${product.category.carac4}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c4" id="note" th:value="${avis.c4}" name="c4">
+	                        <label><span  id="demo"></span></label><br/><br/>  
+	                        <label class="mb-4" th:text="${product.category.carac5}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c5" id="note" th:value="${avis.c5}" name="c5">
+	                        <label><span  id="demo"></span></label><br/><br/>  
+	                   
+	                  <div class="form-group">
+	                    <label for="TitleReview">Add photo about your experience (optional) </label>
+	                    <input type="file" class="form-control" id="titleReview" >
+	                  </div>
+	           
+	                  <div class="form-group">
+	                    <label for="review">Your review *</label>
+	                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" id="comment" name="comment"></textarea>
+	                  </div>
+	                 
                  
                   <div class="form-group">
                     <input type="submit" value="Submit your review" class="btn py-3 px-4 btn-primary">
@@ -286,97 +318,18 @@
               </div>
             </div>
 
-          </div> <!-- .col-md-8 -->
-          <div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>Services</h3>
-                <li><a href="#">Skylights <span class="fa fa-chevron-right"></span></a></li>
-                <li><a href="#">Waterproofing <span class="fa fa-chevron-right"></span></a></li>
-                <li><a href="#">Industrial Roofing <span class="fa fa-chevron-right"></span></a></li>
-                <li><a href="#">Residential Roofing <span class="fa fa-chevron-right"></span></a></li>
-                <li><a href="#">Gutter Cleaning<span class="fa fa-chevron-right"></span></a></li>
-                <li><a href="#">Commercial Roofing<span class="fa fa-chevron-right"></span></a></li>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Recent Blog</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../../images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span>Mar. 24, 2020</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../../images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span>Mar. 24, 2020</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../../images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span>Mar. 24, 2020</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">roof</a>
-                <a href="#" class="tag-cloud-link">home</a>
-                <a href="#" class="tag-cloud-link">repair</a>
-                <a href="#" class="tag-cloud-link">renovate</a>
-                <a href="#" class="tag-cloud-link">mechanics</a>
-                <a href="#" class="tag-cloud-link">residential</a>
-                <a href="#" class="tag-cloud-link">industrial</a>
-                <a href="#" class="tag-cloud-link">gutter</a>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section> <!-- .section -->
+      </div></div></div></section>
 
 
-    <footer class="footer ftco-section">
+       <footer class="footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="logo"><a href="#"><span class="flaticon-roof-2 mr-2"></span>Roofing</a></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            
+         
+              <h2 class="logo mr-2"><a href="/"><img src="../static/images/logoooo.png" alt="logo" style="width:40px;" >Your Advancer</a></h2>
+              <p>We analyze millions of reviews to find the best products for you.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-4">
                 <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -386,43 +339,37 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Services</h2>
+              <h2 class="ftco-heading-2">Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Skylights</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Waterproofing</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Industrial Roofing</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Residential Roofing</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Gutter Cleaning</a></li>
-                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Commercial Roofing</a></li>
+                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
+                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-6 col-lg">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Business Hours</h2>
-              <div class="opening-hours">
-              	<h4>Opening Days:</h4>
-              	<p class="pl-3">
-              		<span>Monday – Friday : 9am to 20 pm</span>
-              		<span>Saturday : 9am to 17 pm</span>
-              	</p>
-              	<h4>Vacations:</h4>
-              	<p class="pl-3">
-              		<span>All Sunday Days</span>
-              		<span>All Official Holidays</span>
-              	</p>
-              </div>
+               <h2 class="ftco-heading-2">Business Owners</h2>
+              <ul class="list-unstyled">
+                <li><a href="../" class="py-1 d-block">Home</a></li>
+                <li><a href="/#about" class="py-1 d-block">About</a></li>
+                <li><a href="/Products" class="py-1 d-block">Our products</a></li>
+                <li><a href="/Contact" class="py-1 d-block">Contact</a></li>
+              </ul>
+              
             </div>
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Contact information</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
+            	<h2 class="ftco-heading-2">Development Team</h2>
+            	
+            	<div class="opening-hours">
+	                <h4>LATRECH Wael</h4>
+	                <h4>BALTI Nour</h4>
+	                <h4>MAATOUG Mohamed zouhaier</h4>
+	                <h4>DJEBALI Boutheina</h4>
+	                <h4>MANSOUR Ibtihel</h4>
+	                
+	                  
 	            </div>
             </div>
           </div>
@@ -431,7 +378,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Your Advancer <i class="fa fa-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

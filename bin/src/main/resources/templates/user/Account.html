@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../../css/bootstrap.css" rel="stylesheet">
-    <link href="@{https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  
@@ -69,8 +69,12 @@
 			        <ul class="navbar-nav mr-auto">
 			        	<li class="nav-item active"><a href="/user/home" class="nav-link">Home</a></li>
 			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-			        	<li class="nav-item"><a href="/user/Products" class="nav-link">Our products</a></li>
-			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+					<li class="nav-item dropdown">
+		        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
+		        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
+			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
+	           		</div>
+		        	</li>			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
 			        </ul>
 		      	</div>
 		    </div>
@@ -152,7 +156,7 @@
 								<div class="tab-content">
 								  <div class="tab-pane container p-0 active" id="services-1">
 								  	<h3><a href="#">Update Profile</a></h3>
-								  	<form action="#" method="POST" th:action="@{/user/upd_account}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+								  	<form action="#" method="POST" th:action="@{/user/upd_account}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()" enctype="multipart/form-data">
 				       				 <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
 				                      <div class="row">
 				                        <div class="col-md-12">
@@ -187,6 +191,14 @@
 				                        		<input type="date" name="birthDate" id="birthDate"  th:field="*{birthDate}" > 		
 				                          </div>
 				                         </div>
+				                           <div class="col-md-12"> 
+	                    					  <div class="custom-file mb-3" >  
+						                         <div class="form-group">
+						                            <input type="file" name="file" class="custom-file-input"  id="validatedCustomFile" >
+						                         </div>
+						                         <label class="custom-file-label" for="validatedCustomFile">Add user picture...</label>
+						                      </div>  
+						                      </div>
 				         
 				                        <div class="col-md-12">
 				                          <div class="form-group">
@@ -200,15 +212,72 @@
 								  </div>
 								  <div class="tab-pane container p-0 fade" id="services-2">
 								  	<h3><a href="#">My Reviews</a></h3>
-								  	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								  	<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-								  	<ul>
-								  		<li><span class="fa fa-check"></span>The Big Oxmox advised her not to do so</li>
-								  		<li><span class="fa fa-check"></span>Far far away, behind the word mountains</li>
-								  		<li><span class="fa fa-check"></span>Separated they live in Bookmarksgrove</li>
-								  		<li><span class="fa fa-check"></span>She packed her seven versalia</li>
-								  		<li><span class="fa fa-check"></span>Little Blind Text didn’t listen</li>
-								  	</ul>
+								  	<div th:each="avis : ${user.reviews}">
+								  	<div class="comment-body">
+	                  
+	                  <!-- reviewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+	                  
+	                    <h3 th:text=${user.username}></h3>
+	                    <div class="meta"><span class="fa fa-chevron-circle-down" th:text="${avis.dateofcreation}"></span></div>
+	                   
+	                    <!--   <table style="width:40%" class="stars">
+	 
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent"></td>
+	                      </tr>
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent">94%</td>
+	                      </tr>
+	                      <tr>
+	                        <td class="heading">rapidity</td>
+	                        <td>  <span class="fa fa-star checked "></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star checked"></span>
+	                                          <span class="fa fa-star-o"></span>
+	                                          <span class="fa fa-star-o"></span></td>
+	                        <td  class="percent">80%</td>
+	                      </tr>
+	                    </table>
+	                  -->
+	                  <table>
+	                  <tr>
+	                  <td  >Commentaire </td>
+	                  <td th:text="${avis.comment}"></td>
+	                  </tr>
+	                    <tr>
+	                  <td  >Quality  Price </td>
+	                  <td th:text="${avis.QalityPrice}"></td>
+	                  </tr>
+	                   <tr>
+	                  <td  >Camera Quality </td>
+	                  <td th:text="${avis.cameraquality}"></td>
+	                  </tr>
+	                  
+	                       <tr>
+	                  <td  >Design </td>
+	                  <td th:text="${avis.design}"></td>
+	                  </tr>
+	                <tr>
+	                  <td  >Comfort </td>
+	                  <td th:text="${avis.comfort}"></td>
+	                 </tr>
+	                  </table>
+								  	
+								  	
+								  	
+								  	</div>
 								  </div>
 
 								</div>
@@ -224,12 +293,14 @@
 
   
 <!--------------------------footer ----------------------------->
-    <footer class="footer ftco-section">
+        <footer class="footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="logo"><a href="#"><span class="fa fa-star-half mr-2"></span>Your Advancer</a></h2>
+            
+         
+              <h2 class="logo mr-2"><a href="/"><img src="../static/images/logoooo.png" alt="logo" style="width:40px;" >Your Advancer</a></h2>
               <p>We analyze millions of reviews to find the best products for you.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-4">
                 <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
@@ -249,30 +320,28 @@
           </div>
           <div class="col-md-6 col-lg">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Business Hours</h2>
-              <div class="opening-hours">
-              	<h4>Opening Days:</h4>
-              	<p class="pl-3">
-              		<span>Monday – Friday : 9am to 20 pm</span>
-              		<span>Saturday : 9am to 17 pm</span>
-              	</p>
-              	<h4>Vacations:</h4>
-              	<p class="pl-3">
-              		<span>All Sunday Days</span>
-              		<span>All Official Holidays</span>
-              	</p>
-              </div>
+               <h2 class="ftco-heading-2">Business Owners</h2>
+              <ul class="list-unstyled">
+                <li><a href="../" class="py-1 d-block">Home</a></li>
+                <li><a href="/#about" class="py-1 d-block">About</a></li>
+                <li><a href="/Products" class="py-1 d-block">Our products</a></li>
+                <li><a href="/Contact" class="py-1 d-block">Contact</a></li>
+              </ul>
+              
             </div>
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Contact information</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
+            	<h2 class="ftco-heading-2">Development Team</h2>
+            	
+            	<div class="opening-hours">
+	                <h4>LATRECH Wael</h4>
+	                <h4>BALTI Nour</h4>
+	                <h4>MAATOUG Mohamed zouhaier</h4>
+	                <h4>DJEBALI Boutheina</h4>
+	                <h4>MANSOUR Ibtihel</h4>
+	                
+	                  
 	            </div>
             </div>
           </div>
@@ -281,7 +350,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Your Advancer <i class="fa fa-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
@@ -307,7 +376,6 @@
         <script th:src="@{../../js/owl.carousel.min.js}"></script>
         <script th:src="@{../../js/jquery.magnific-popup.min.js}"></script>
         <script th:src="@{../../js/scrollax.min.js}"></script>
-  		<script src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false}"></script>
   		<script th:src="@{../../js/google-map.js}"></script>
         <script th:src="@{../../js/main.js}"></script>
     

@@ -25,7 +25,7 @@
     <div align="center" class="contact-wrap  ">
                     <h3 class="mb-4">Update reviews</h3>
 
-                    <form action="#" method="POST" th:action="@{/updreviewadmin/{id}(id=${avis.id})}" th:object="${avis}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+                    <form action="#" method="POST" th:action="@{/admin/updreviewadmin/{id}(id=${avis.id})}" th:object="${avis}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
                       	<label class="mb-4">Quality price *</label><br/>
                         <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note" th:value="${avis.QalityPrice}" name="QalityPrice">
                         <label><span  id="demo"></span></label><br/><br/>
@@ -40,7 +40,7 @@
 		           
 		                  <div class="form-group">
 		                    <label for="review">Your review *</label>
-		                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" id="comment" name="comment"></textarea>
+		                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" th:text="${avis.comment}" id="comment" name="comment"></textarea>
 		                  </div>
 		                   
 		                <div class="form-group">

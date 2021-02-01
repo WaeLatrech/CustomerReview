@@ -253,25 +253,29 @@
 	                  -->
 	                  <table>
 	                  <tr>
-	                  <td  >Commentaire </td>
+	                  <td >Commentaire : </td>
 	                  <td th:text="${avis.comment}"></td>
 	                  </tr>
 	                    <tr>
-	                  <td  >Quality  Price </td>
-	                  <td th:text="${avis.QalityPrice}"></td>
+	                  <td th:text="${avis.product.category.carac1}"> </td>
+	                  <td th:text="${avis.c1}"></td>
 	                  </tr>
 	                   <tr>
-	                  <td  >Camera Quality </td>
-	                  <td th:text="${avis.cameraquality}"></td>
+	                  <td  th:text="${avis.product.category.carac2}"></td>
+	                  <td th:text="${avis.c2}"></td>
 	                  </tr>
 	                  
 	                       <tr>
-	                  <td  >Design </td>
-	                  <td th:text="${avis.design}"></td>
+	                  <td th:text="${avis.product.category.carac3}" > </td>
+	                  <td th:text="${avis.c3}"></td>
 	                  </tr>
 	                <tr>
-	                  <td  >Comfort </td>
-	                  <td th:text="${avis.comfort}"></td>
+	                  <td th:text="${avis.product.category.carac4}" > </td>
+	                  <td th:text="${avis.c4}"></td>
+	                 </tr>
+	                 <tr>
+	                  <td th:text="${avis.product.category.carac5}" > </td>
+	                  <td th:text="${avis.c5}"></td>
 	                 </tr>
 	                  </table>
 								  	

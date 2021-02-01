@@ -22,19 +22,21 @@
 <body>
 	<div align="center" class="container-fluid table-responsive ">
 		<hr>
-		<h2 class="mb-4">List Avis</h2>
+		<h2 class="mb-4">Reviews List</h2>
 		<hr>
 		<table border="1" class="table">
 			<tr class="thead-light">
 				<th rowspan="2">Product</th>
-				<th colspan="8">Reviews</th>
+				<th colspan="10">Reviews</th>
 				
 			</tr>
 			<tr class="thead" >
-				<th>Quality/Price</th>
-				<th>Camera Quality</th>
-				<th>Design</th>
-				<th>Comment</th>
+				<th >Caracteristique 1</th>
+				<th>Caracteristique 2</th>
+				<th>Caracteristique 3</th>
+				<th>Caracteristique 4</th>
+				<th>Caracteristique 5</th>
+								<th>Commentaire</th>
 				<th>Nb like</th>
 				<th>Nb dislike</th>
 				<th>Delete</th>
@@ -43,13 +45,15 @@
 			
 			 <div th:each="product : ${products}">
 				<tr >		
-			    <td th:rowspan="${product.avis.size()+1}" th:utext="${product.nom}" ></td>
+			    <td th:rowspan="${product.avisss.size()+1}" th:utext="${product.nom}" ></td>
 			    
-			      <tr th:each="a : ${product.avis}">
+			      <tr th:each="a : ${product.avisss}">
 			  		<div>
-				   		<td  th:utext="${a.QalityPrice}" ></td>
-						<td th:utext="${a.cameraquality}" ></td>
-						<td th:utext="${a.design}" ></td>
+				   		<td  th:utext="${a.c1}" ></td>
+				   		<td  th:utext="${a.c2}" ></td>
+				   		<td  th:utext="${a.c3}" ></td>
+				   		<td  th:utext="${a.c4}" ></td>
+						<td th:utext="${a.c5}" ></td>
 						<td th:utext="${a.comment}" ></td>
 						<td th:utext="${a.nblike}" ></td>
 						<td th:utext="${a.nbdislike}" ></td>

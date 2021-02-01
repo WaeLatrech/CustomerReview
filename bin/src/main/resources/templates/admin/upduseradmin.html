@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Admin - Upd User</title>
+        <title>Admin - Update User</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
@@ -25,7 +25,7 @@
     <div align="center" class="contact-wrap  ">
                     <h3 class="mb-4">Update User</h3>
 
-                    <form action="#" method="POST" th:action="@{/upduseradmin/{id}(id=${user.id})}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()">
+                    <form action="#" method="POST" th:action="@{/admin/upduseradmin/{id}(id=${user.id})}" th:object="${user}" id="contactForm" class="contactForm" name="fsignup" onsubmit="return valider()" enctype="multipart/form-data">
                       
                       <div class="row">
                         <div class="col-md-12">
@@ -62,9 +62,16 @@
                          </div>
                          <div class="col-md-12">
                           <div class="form-group">
-                        		<input type="text" class="form-control" name="Role" id="Role"  th:field="*{Role}" placeholder="Role.." > 		
+                        		<input type="text" class="form-control" name="Role" id="Role"  th:field="*{Role}" placeholder="Role" > 		
                           </div>
                          </div>
+                           <div class="col-md-12"> 
+	                    					  <div class="custom-file mb-3" >  
+						                         <div class="form-group">
+						                            <input type="file" name="file" class="custom-file-input"  id="validatedCustomFile" required>
+						                         </div>
+						                         <label class="custom-file-label" for="validatedCustomFile">Add user picture...</label>
+						                      </div> </div>
                         <div class="col-md-12">
                           <div class="form-group">
                             <input type="submit" name="submit" id="submit" value="Sign up" class="btn btn-primary sign-up">

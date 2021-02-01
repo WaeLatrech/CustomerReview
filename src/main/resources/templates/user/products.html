@@ -117,7 +117,7 @@
                       			<div class="row" >
 						          	<div class="col-md-4 d-flex ftco-animate" th:each="product : ${products}">
 						            	<div class="blog-entry align-self-stretch">
-						              		<a th:href="@{/add-review/{id}(id=${product.idp})}"class="block-20" >
+						              		<a th:href="@{/add-review/{id}(id=${product.idp})}" class="block-20" >
 						              			<center> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 150px; height: 180px; "></center>
 						              		</a>
 						              		<div class="text p-3">

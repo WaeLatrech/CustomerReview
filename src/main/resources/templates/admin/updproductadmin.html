@@ -3,22 +3,24 @@
         <title>edit product</title>
         <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	     <link rel="stylesheet" th:href="@{../css/bootstrap.css}"   type="text/css">
-	    <link  type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+	    <link href="css/bootstrap.css" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 	
-	    <link rel="stylesheet" type="text/css" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	 
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/animate.css}">
-	    
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/owl.carousel.min.css}">
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/owl.theme.default.min.css}">
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/magnific-popup.css}">
-	
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/bootstrap-datepicker.css}">
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/jquery.timepicker.css}">
-	
-	    <link rel="stylesheet" type="text/css"  th:href="@{../css/flaticon.css}">
-	    <link rel="stylesheet" type="text/css" th:href="@{../css/style.css}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="../../css/animate.css">
+        
+        <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+        <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="../../css/magnific-popup.css">
+
+        <link rel="stylesheet" href="../../css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="../../css/jquery.timepicker.css">
+
+        <link rel="stylesheet" href="../../css/flaticon.css">
+        <link rel="stylesheet" href="../../css/style.css">
     </head>
     <body>
         <section class="ftco-section bg-light" >
@@ -30,12 +32,12 @@
                         <div class="contact-wrap w-100 p-md-5 p-4">
                           <h3 class="mb-4">Edit product</h3>
 
-                    <form action="#" th:action="@{/admin/updproductadmin/{id}(id=${product.idp})}"  method="post" th:object="${product}" id="contactForm" class="contactForm"   enctype="multipart/form-data">
+                    <form action="#" th:action="@{/admin/updproductadmin/{id}(id=${product.idp})}"  method="post" id="contactForm" class="contactForm"   enctype="multipart/form-data">
                   
                       	<div class="row">
                         	<div class="col-md-12">                          
 
-	            				<select class="form-control" name="pcat" >
+	            				<select class="form-control" name="pcat">
 		                            <option value="0" th:text="${product.catname}"></option>
 		                            <option th:each="category : ${categories}" th:value="${category.Title}" th:text="${category.Title}"></option>
 	                            </select><br/>
@@ -44,18 +46,18 @@
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                        	<input type="text" class="form-control"  name="pname" id="name" th:value="${product.nom}">
+                        	<input type="text" class="form-control"  name="nom" id="nom" th:value="${product.nom}">
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                        	<input type="text" class="form-control" name="marque"  id="brand" th:value="${product.marque}">
+                        	<input type="text" class="form-control" name="marque"  id="marque" th:value="${product.marque}">
                           </div>
                         </div>
                         <div class="col-md-12"> 
 	                      <div class="custom-file mb-3" >  
 	                         <div class="form-group">
-	                            <input type="file" class="custom-file-input"  id="validatedCustomFile" required name="file">
+	                            <input type="file" class="custom-file-input"  id="validatedCustomFile"  name="file">
 	                         </div>
 	                         <label class="custom-file-label" for="validatedCustomFile" name="file">Add photo for your product...</label>
 	                      </div>  
@@ -63,7 +65,7 @@
 
                         <div class="col-md-12"> 
                           <div class="form-group">
-                            <textarea class="form-control" name="desc" id="description" th:text="${product.description}" ></textarea>
+                            <textarea class="form-control" name="description" id="description" th:text="${product.description}" ></textarea>
                           </div>
                         </div>
    
@@ -82,12 +84,12 @@
                   </div>
                 
           </section>
-        <script th:src="@{../js/jquery.min.js}" ></script>
-        <script th:src="@{../js/jquery-migrate-3.0.1.min.js}"></script>
-        <script th:src="@{../js/popper.min.js}"></script>
-        <script th:src="@{../js/bootstrap.min.js}" ></script>
-        <script th:src="@{../js/jquery.easing.1.3.js}"></script>
-        <script th:src="@{../js/jquery.waypoints.min.js}"></script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery.easing.1.3.js"></script>
+        <script src="../js/jquery.waypoints.min.js"></script>
         <script src="../js/jquery.stellar.min.js"></script>
         <script src="../js/jquery.animateNumber.min.js"></script>
         <script src="../js/bootstrap-datepicker.js"></script>
@@ -95,8 +97,10 @@
         <script src="../js/owl.carousel.min.js"></script>
         <script src="../js/jquery.magnific-popup.min.js"></script>
         <script src="../js/scrollax.min.js"></script>
+        <script src="../https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="../js/google-map.js"></script>
         <script src="../js/main.js"></script>
-         <script th:src="@{js/jquery-3.1.1.min.js}"></script>
-  <script th:src ="@{js/bootstrap.js}"></script>   
+        <script src="js/jquery-3.1.1.min.js"></script>
+  		<script src ="js/bootstrap.js"></script>    
     </body>
 </html>

@@ -1,6 +1,9 @@
 package projet.rest.data.endpoints;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
@@ -252,8 +255,14 @@ public class Controlerr {
     		System.out.println("not a proper file ");
     	}
     	try {
-			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
-			System.out.println("cv");
+    		//if (!FileName.isEmpty())
+    			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+    		//else {
+    			//MultipartFile f = "C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png";
+    			/*InputStream in = new FileInputStream("C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png");
+    			MultipartFile f = new MultipartFile(in);
+    			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes(in.get)));
+    		}*/
 		} catch (IOException e) {
 			System.out.println("dowiw");
 			e.printStackTrace();

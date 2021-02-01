@@ -154,7 +154,7 @@ public class UserController {
 	@PostMapping("/add-product")
 	public String registerSuccess( @RequestParam ("pcat") String catname , @RequestParam ("pname") String nom , @RequestParam("marque") String marque, @RequestParam("desc") String description , @RequestParam ("file") MultipartFile file ) {
 		service.createProduct(catname,nom,marque,description,file,getUserUsername());
-		return "redirect:/user/Products";
+		return "redirect:/user/Products/"+catname;
 	}
 	
 	

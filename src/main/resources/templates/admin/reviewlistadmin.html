@@ -27,7 +27,7 @@
 		<table border="1" class="table">
 			<tr class="thead-light">
 				<th rowspan="2">Product</th>
-				<th colspan="10">Reviews</th>
+				<th colspan="9">Reviews</th>
 				
 			</tr>
 			<tr class="thead" >
@@ -40,7 +40,7 @@
 				<th>Nb like</th>
 				<th>Nb dislike</th>
 				<th>Delete</th>
-				<th >Edit</th>
+				
 			</tr>
 			
 			 <div th:each="product : ${products}">
@@ -60,9 +60,7 @@
 						<td >
 							<a th:href="@{/admin/delreview/{id}(id=${a.id})}" class="btn btn-danger mt" >Delete</a>
 						</td>
-						<td> 
-							<a th:href="@{/admin/updreview/{id}(id=${a.id})}"   aria-hidden="true" class="btn btn-info mt">Edit</a>
-						</td>
+						
 					</div>
 				  </tr>
 

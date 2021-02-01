@@ -13,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,16 @@ public class AdminControler {
 	     
 		return authorities.toArray()[0].toString();
 	}
-	 
+	public String getUserUsername() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username ;
+		if (principal instanceof UserDetails) {
+		 username = ((UserDetails)principal).getUsername();
+		} else {
+		 username = principal.toString();
+		}
+		return username;
+	}
     
 	@GetMapping("/home")
 	public String returnindexadmin() {
@@ -107,7 +117,6 @@ public class AdminControler {
 	}
 	@PostMapping("/upduseradmin/{id}")
 	public String EditSuucesUser( Model model ,@PathVariable("id") long id ,@RequestParam ("username") String username , @RequestParam ("email") String email , @RequestParam("password") String password, @RequestParam("phone") String phone,@RequestParam ("birthDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date birthDate,@RequestParam("Role") String Role , @RequestParam("file") MultipartFile file  ) {
- 
 		 UserEntity user =new UserEntity();
 		 user.setUsername(username);
 		 user.setEmail(email);
@@ -120,7 +129,11 @@ public class AdminControler {
 	    		System.out.println("not a proper file ");
 	    	}
 	    	try {
-				user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+	    		if(!FileName.isEmpty())
+	    			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
+				else 
+					user.setImageU(service.getUserEntityById(id).getImageU());
+				
 				System.out.println("cv");
 			} catch (IOException e) {
 				System.out.println("dowiw");
@@ -191,7 +204,7 @@ public class AdminControler {
 	@PostMapping("/addproductadmin")
 	public String registerSuccess( @RequestParam ("pcat") String catname , @RequestParam ("pname") String nom , @RequestParam("marque") String marque, @RequestParam("desc") String description , @RequestParam ("file") MultipartFile file , Model model ) {
 		System.out.println("$$$$$$$$$$$$$$"+catname+nom+marque+description+file);
-		service.createProduct(catname,nom,marque,description,file,"ADMIN");
+		service.createProduct(catname,nom,marque,description,file,getUserUsername());
 		
 		 return "redirect:/admin/productlist";
 	}
@@ -205,6 +218,8 @@ public class AdminControler {
 		public String UpdProducts(@PathVariable("id") int id, Model model) {
 			ProductEntity product = service.getProductById(id);
 			List<CategoryEntity> categories = service.getAllCategories();
+			CategoryEntity category = new CategoryEntity();
+			model.addAttribute("category",category);
 			model.addAttribute("categories", categories);
 			model.addAttribute("product", product);
 		
@@ -212,19 +227,22 @@ public class AdminControler {
 	}
 	
 	@PostMapping("/updproductadmin/{id}")
-	public String EditSuuces( Model model ,@PathVariable("id") int i ,@RequestParam ("pcat") String catname , @RequestParam ("pname") String nom , @RequestParam("marque") String marque, @RequestParam("desc") String description,@RequestParam ("file") MultipartFile file  ) {
- 
+	public String EditSuuces( Model model ,@PathVariable("id") int i ,@RequestParam ("pcat") String catname , @RequestParam ("nom") String nom , @RequestParam("marque") String marque, @RequestParam("description") String description,@RequestParam ("file") MultipartFile file  ) {
 		 ProductEntity p1 = new ProductEntity();
 		 p1.setCatname(catname);
 		 p1.setNom(nom);
 		 p1.setDescription(description);
 		 p1.setMarque(marque);
 		 String FileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
-			if(FileName.contains("..")) {
+			
+		 	if(FileName.contains("..")) {
 				System.out.println("not a proper file ");
 			}
 			try {
-				p1.setImg(Base64.getEncoder().encodeToString(file.getBytes()));
+				if(!FileName.isEmpty())
+					p1.setImg(Base64.getEncoder().encodeToString(file.getBytes()));
+				else 
+					p1.setImg(service.getProductById(i).getImg());
 			} 
 			catch (IOException e) {
 				e.printStackTrace();
