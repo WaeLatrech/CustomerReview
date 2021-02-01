@@ -182,13 +182,14 @@
 	             <div  th:each="avis : ${product.avisss}">
 	              
 	                <li class="comment">
+	                	                 	                  <hr>
+	                	                 	                  <br>
 	                
 	                  <div class="vcard bio" >
 	                    <img  th:src="*{'data:img/png;base64,'+{avis.user.imageU}}"  alt="Image placeholder">
 	                  </div>
 	                 
 	                  <div class="comment-body">
-	                  
 	                  <!-- reviewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
 	                  
 	                    <h3 th:text=${avis.user.username}></h3>
@@ -225,29 +226,30 @@
 	                      </tr>
 	                    </table>
 	                  -->
-	                  <table>
+	                 <table>
 	                  <tr>
-	                  <td  >Commentaire </td>
-	                  <td th:text="${avis.comment}"></td>
+	                  <td th:text="${product.category.carac1}" ></td>
+	                  <td th:text="${avis.c1}"></td>
 	                  </tr>
 	                    <tr>
-	                  <td  >Quality  Price </td>
-	                  <td th:text="${avis.QalityPrice}"></td>
+	                  <td th:text="${product.category.carac2}" > </td>
+	                  <td th:text="${avis.c2}"></td>
 	                  </tr>
 	                   <tr>
-	                  <td  >Camera Quality </td>
-	                  <td th:text="${avis.cameraquality}"></td>
+	                  <td  th:text="${product.category.carac3}"> </td>
+	                  <td th:text="${avis.c3}"></td>
 	                  </tr>
 	                  
 	                       <tr>
-	                  <td  >Design </td>
-	                  <td th:text="${avis.design}"></td>
+	                  <td  th:text="${product.category.carac4}"></td>
+	                  <td th:text="${avis.c4}"></td>
 	                  </tr>
 	                <tr>
-	                  <td  >Comfort </td>
-	                  <td th:text="${avis.comfort}"></td>
+	                  <td  th:text="${product.category.carac5}"> </td>
+	                  <td th:text="${avis.c5}"></td>
 	                 </tr>
 	                  </table>
+	                  
 	                  
 	                   
 	                  
@@ -274,34 +276,39 @@
                 <h3 class="mb-5">Leave a review</h3>
                 <form action="#" class="p-5 bg-light" th:action="@{/user/add-review/{id}(id=${product.idp})}"  method="post">
 
-                      	<label class="mb-4">Quality price *</label><br/>
-                        <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note"  th:value="${avis.QalityPrice}" name="QalityPrice">
-                        <label><span  id="demo"></span></label><br/><br/>
-                      
-                      	<label class="mb-4">Camera quality *</label><br/>
-                        <input type="range" min="0" max="5" value="3" class="cameraquality" id="note" th:value="${avis.cameraquality}" name="cameraquality">
-                        <label><span  id="demo"></span></label><br/><br/>
-
-                        <label  class="mb-4">Design *</label>
-                        <input type="range" min="0" max="5" value="3" class="design" id="note" th:value="${avis.design}" name="design">
-                        <label><span  id="demo"></span></label><br/><br/>
-                    
-                        <label class="mb-4">Durability *</label>
-                        <input type="range" min="0" max="5" value="3" class="durability" id="note" th:value="${avis.durability}" name="durability">
-                        <label><span  id="demo"></span></label><br/><br/>  
-                   
-                  <div class="form-group">
-                    <label for="TitleReview">Add photo about your experience (optional) </label>
-                    <input type="file" class="form-control" id="titleReview" >
-                  </div>
-           
-                  <div class="form-group">
-                    <label for="review">Your review *</label>
-                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" id="comment" name="comment"></textarea>
-                  </div>
-                 
-                
-
+    
+	                  
+	
+	                   
+	                      	<label class="mb-4" th:text="${product.category.carac1}"></label><br/>
+	                        <input type="range" min="0" max="5" value="3" class="c1" id="note"  th:value="${avis.c1}" name="c1">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	                      
+	                      	<label class="mb-4" th:text="${product.category.carac2}"></label><br/>
+	                        <input type="range" min="0" max="5" value="3" class="c2" id="note" th:value="${avis.c2}" name="c2">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	
+	                        <label  class="mb-4" th:text="${product.category.carac3}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c3" id="note" th:value="${avis.c3}" name="c3">
+	                        <label><span  id="demo"></span></label><br/><br/>
+	                    
+	                        <label class="mb-4" th:text="${product.category.carac4}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c4" id="note" th:value="${avis.c4}" name="c4">
+	                        <label><span  id="demo"></span></label><br/><br/>  
+	                        <label class="mb-4" th:text="${product.category.carac5}"></label>
+	                        <input type="range" min="0" max="5" value="3" class="c5" id="note" th:value="${avis.c5}" name="c5">
+	                        <label><span  id="demo"></span></label><br/><br/>  
+	                   
+	                  <div class="form-group">
+	                    <label for="TitleReview">Add photo about your experience (optional) </label>
+	                    <input type="file" class="form-control" id="titleReview" >
+	                  </div>
+	           
+	                  <div class="form-group">
+	                    <label for="review">Your review *</label>
+	                    <textarea  class="form-control" cols="30" rows="10" th:value="${avis.comment}" id="comment" name="comment"></textarea>
+	                  </div>
+	                 
                  
                   <div class="form-group">
                     <input type="submit" value="Submit your review" class="btn py-3 px-4 btn-primary">

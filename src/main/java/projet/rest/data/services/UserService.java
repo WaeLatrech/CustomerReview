@@ -20,7 +20,7 @@ public interface UserService {
     /**** category  *****/ 
     List<CategoryEntity> getAllCategories() ; 
     CategoryEntity getCategoryById (int s) ; 
-    CategoryEntity createCategory ( CategoryEntity catEntity) ; 
+    CategoryEntity createCategory ( CategoryEntity catEntity, String s1,String s2,String s3,String s4,String s5) ; 
     CategoryEntity deleteCategoryEntity( int  id ) ; 
     List<ProductEntity> getProductsByCategory(String Title)  ; 
     

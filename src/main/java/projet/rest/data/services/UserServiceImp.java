@@ -155,7 +155,16 @@ public class UserServiceImp implements UserService {
  
 
     @Override
-    public CategoryEntity createCategory(CategoryEntity catEntity) {
+    public CategoryEntity createCategory(CategoryEntity catEntity,String c1,String c2,String c3,String c4,String c5) {
+ 
+    	catEntity.setCarac1(c1);
+    	catEntity.setCarac2(c2);
+    	catEntity.setCarac3(c3);
+    	catEntity.setCarac4(c4);
+    	catEntity.setCarac5(c5);
+
+    	
+    	
     
         CategoryEntity category = reposCat.save(catEntity) ; 
         
@@ -293,7 +302,7 @@ public ProductEntity createProduct(String cat ,String nom, String marque , Strin
         AvisEntity a1= new AvisEntity();
         float note;
      
-        note=(a.getCameraquality()+a.getQalityPrice()+a.getDesign())/3;
+        note=(a.getC1()+a.getC2()+a.getC3()+a.getC4()+a.getC5())/5;
         a1.setNote(note);
         a1.setProduct(productEntity);
         a1.setLikedBy(new ArrayList<>());
@@ -303,6 +312,13 @@ public ProductEntity createProduct(String cat ,String nom, String marque , Strin
       a1.setUser(a.getUser());
      a1.setComment(a.getComment());
      a1.setDateofcreation(a.getDateofcreation());
+     a1.setC1(a.getC1());
+     a1.setC2(a.getC2());
+     a1.setC3(a.getC3());
+     a1.setC4(a.getC4());
+     a1.setC5(a.getC5());
+     a1.getProduct().getAvisss().add(a1);
+     a1.getProduct().setRatee();
         reposAvis.save(a1);
         
         return productEntity;
@@ -310,7 +326,10 @@ public ProductEntity createProduct(String cat ,String nom, String marque , Strin
     }
     @Override
     public AvisEntity deleteAvisEntity(int id) {
+         
     	AvisEntity a = this.getAvisById(id);
+    	a.getProduct().setRateAfterDelete(a.getNote());
+    a.getProduct().getAvisss().remove(a);
         reposAvis.deleteById(id);
     	return a;
     }
@@ -352,12 +371,12 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
                oldavis.setNbdislike(newEntityAvis.getNbdislike());
            if (newEntityAvis.getComment()!= null )
                oldavis.setComment(newEntityAvis.getComment());
-           if (newEntityAvis.getQalityPrice()!= -1 )
-               oldavis.setQalityPrice(newEntityAvis.getQalityPrice());
-           if (newEntityAvis.getCameraquality()!= -1 )
-               oldavis.setCameraquality(newEntityAvis.getCameraquality());
-           if (newEntityAvis.getDesign()!= -1 )
-               oldavis.setDesign(newEntityAvis.getDesign());
+           if (newEntityAvis.getC1()!= -1 )
+               oldavis.setC1(newEntityAvis.getC1());
+           if (newEntityAvis.getC2()!= -1 )
+               oldavis.setC2(newEntityAvis.getC2());
+           if (newEntityAvis.getC3()!= -1 )
+               oldavis.setC3(newEntityAvis.getC3());
            
          return reposAvis.save(oldavis);
         

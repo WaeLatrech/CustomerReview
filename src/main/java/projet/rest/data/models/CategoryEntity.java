@@ -16,6 +16,7 @@ import lombok.Data;
 @Entity
 @Table( name = "Category")
 public class CategoryEntity {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
     private int id ;
@@ -25,4 +26,10 @@ public class CategoryEntity {
     
     @OneToMany( mappedBy = "category")
     private  List<ProductEntity> product;
+    private String carac1;
+    private String carac2;
+    private String carac3;
+    private String carac4;
+    private String carac5;
+  
 }

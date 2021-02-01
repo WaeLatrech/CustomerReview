@@ -156,11 +156,7 @@ public class UserController {
 		service.createProduct(catname,nom,marque,description,file,getUserUsername());
 		return "redirect:/user/Products";
 	}
-	@PostMapping("/add-categories")
-	public String registerSuccess(@ModelAttribute("Category") CategoryEntity Category) {
-		service.createCategory(Category);
-		return "user/productcreated";
-	}
+	
 	
 	@GetMapping("/add-review/{id}")
 	public String addReview(Model model,@PathVariable int id ) {

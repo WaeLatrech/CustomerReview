@@ -53,15 +53,15 @@ public  class AvisEntity {
     @JsonIgnore
     @ManyToOne
     private ProductEntity product;
+    
 
+
+    private float c1;
+    private float c2 ;
+    private float c3;
+    private float c4;
+    private float c5 ;
  
-
-    private float QalityPrice;
-    private float nbtours ;
-    private float cameraquality;
-    private float durability;
-    private float design ;
-    private float comfort ;
     @CreationTimestamp
     private Date dateofcreation ;
 	

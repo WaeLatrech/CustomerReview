@@ -149,9 +149,9 @@ public class AdminControler {
 	}
 
 	@PostMapping("/addcategorie")
-	public String registerSuccess(@ModelAttribute("Category") CategoryEntity Category, Model model) {
-		service.createCategory(Category);
-		return this.AllCategoris(model);
+	public String registerSuccess(@ModelAttribute("Category") CategoryEntity Category, Model model,@RequestParam("carac1") String s1,@RequestParam("carac2") String s2,@RequestParam("carac3") String s3,@RequestParam("carac4") String s4,@RequestParam("carac5") String s5) {
+		service.createCategory(Category,s1,s2,s3,s4,s5);
+		return  "redirect:/admin/categorielist";
 	}
 	@GetMapping("/delcategorie/{id}")
 	public String DelCategories(@PathVariable("id") int id, Model model ,RedirectAttributes redirAttrs) {
@@ -269,14 +269,16 @@ public class AdminControler {
 	    return "admin/updreviewadmin";
 	}
 	@PostMapping("/updreviewadmin/{id}")
-	public String EditSuucesReview( Model model ,@PathVariable("id") int id ,@RequestParam ("QalityPrice") float QalityPrice , @RequestParam ("cameraquality") float cameraquality , @RequestParam("design") float design, @RequestParam("comment") String comment  ) {
+	public String EditSuucesReview( Model model ,@PathVariable("id") int id ,@RequestParam ("c1") float c1, @RequestParam ("c2") float c2 , @RequestParam("c3") float c3, @RequestParam("c4") float c4,@RequestParam("c5") float c5,@RequestParam("comment")String comment ) {
  
 		 AvisEntity a =new AvisEntity();
-		 a.setQalityPrice(QalityPrice);
-		 a.setCameraquality(cameraquality);
-		 a.setDesign(design);
+a.setC1(c1);
+a.setC2(c2);
+a.setC3(c3);
+a.setC3(c3);
+a.setC4(c4);
+a.setC5(c5);
 		 a.setComment(comment);
-		 
 		 service.modifyAvis(id, a);
 		return "redirect:/admin/reviewlist";
 	}

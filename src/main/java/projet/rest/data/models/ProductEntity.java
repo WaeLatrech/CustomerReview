@@ -46,5 +46,30 @@ public class ProductEntity {
 @ManyToOne(cascade = CascadeType.DETACH)
 	UserEntity userp;
 private String description ;
+public void setRatee() {
+	float x=0;
+	if(this.avisss.size()==0) {
+		this.rate=0;}
+	else {
+	for(AvisEntity a : this.avisss)
+	{
+		x=x+a.getNote();
+		System.out.println(x);
+	
+	}
+	this.rate=x/(this.avisss.size()+1);
+	}
+	
+	}
+	
 
-}
+
+
+public void setRateAfterDelete(float note) {
+	int size = this.avisss.size();
+	if(size>1) {
+	this.rate=((this.rate*size)-note)/(size-1);
+	}
+	else {
+		this.rate=0;
+	}}}
