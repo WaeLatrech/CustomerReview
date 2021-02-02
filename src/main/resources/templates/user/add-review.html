@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" th:href="@{../../css/bootstrap.css}"   type="text/css">
 	<link  type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  />
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" th:href="@{../../css/animate.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{../../css/owl.carousel.min.css}">
@@ -33,37 +32,6 @@
          width: 1120px !important ; 
          margin-right: 100px   !important ; 
         }
-        
-        .stars-outer {
-  position: relative;
-  display: inline-block;
-}
-
-.stars-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.stars-outer::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: #ccc;
-}
-
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: #f8ce0b;
-}
-
-
-        
 	    </style>
   </head>
   <body>
@@ -132,7 +100,7 @@
 		      <div class="container">
 		        	<div class="row no-gutters slider-text align-items-end">
 		          		<div class="col-md-9 ftco-animate pb-5"> 
-		          			<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span> <span>OUR Products <i class="fa fa-chevron-right"></i></span></p>
+		          			<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span> <span>Reviews <i class="fa fa-chevron-right"></i></span></p>
 	                		<h1 class="mb-0 bread">Reviews</h1>
 		          		</div>
 		        	</div>
@@ -239,8 +207,9 @@
 	            <h3> Reviews : </h3>
 	            <br>
 	              <ul class="comment-list" >
+	             <div  th:each="avis : ${product.avisss}">
 	              
-	                <li class="comment box1" th:each="avis : ${product.avisss}">
+	                <li class="comment box1">
 	                	                 	               
 	              <br>
 	                
@@ -255,66 +224,36 @@
 	                    <div class="meta"><span class="fa fa-chevron-circle-down" th:text="${avis.dateofcreation}"></span></div>
 	    
 	                  <hr>
-	                   
-	                  <div style="color : #000000; font-size : 18px ; " th:text="${avis.comment}"></div	>
-	                   
-	                  
 	                 <table>
-	                 
-	                  
-	                  <tr class="carac1">
-	                  <td th:text="${product.category.carac1}"  ></td>
-	                   <td>
-                         <div class="stars-outer">
-                         <div class="stars-inner"></div>
-                         </div>
-                         <span class="number-rating"></span>
-                         </td>
-	                  <td th:value="${avis.c1}" th:text="${avis.c1}" id="cr1"></td>
+	                   <tr >
+	                  <td style="color : #000000; font-size : 18px ; " th:text="${avis.comment}"></td>
+	                   
 	                  </tr>
-	                  <tr  class="carac2">
+	                  <tr>
+	                  <td th:text="${product.category.carac1}" ></td>
+	                  <td th:text="${avis.c1}"></td>
+	                  </tr>
+	                    <tr>
 	                  <td th:text="${product.category.carac2}" > </td>
-	                   <td>
-                              <div class="stars-outer">
-                             <div class="stars-inner"></div>
-                          </div>
-                          <span class="number-rating"></span>
-                    
-                            </td>
-	                  <td th:value="${avis.c2}"  id="cr2"></td>
+	                  <td th:text="${avis.c2}"></td>
 	                  </tr>
-	                  <tr class="carac3" >
-	                  <td  th:text="${product.category.carac3}"  > </td>
-						   <td>
-					          <div class="stars-outer">
-					            <div class="stars-inner"></div>
-					          </div>
-					          <span class="number-rating"></span>
-					        </td>
-	                  <td th:value="${avis.c3}" id="cr3" ></td>
+	                   <tr>
+	                  <td  th:text="${product.category.carac3}"> </td>
+	                  <td th:text="${avis.c3}"></td>
 	                  </tr>
 	                  
-	                   <tr class="carac4">
-	                  <td  th:text="${product.category.carac4}" ></td>
-	                   <td>
-					          <div class="stars-outer">
-					            <div class="stars-inner"></div>
-					          </div>
-					          <span class="number-rating"></span>
-					        </td>
-	                  <td th:value="${avis.c4}" id="cr4"></td>
+	                       <tr>
+	                  <td  th:text="${product.category.carac4}"></td>
+	                  <td th:text="${avis.c4}"></td>
 	                  </tr>
-	                <tr class="carac5">
-	                  <td  th:text="${product.category.carac5}" > </td>
-	                   <td>
-				          <div class="stars-outer">
-				            <div class="stars-inner"></div>
-				          </div>
-				          <span class="number-rating"></span>
-				        </td>
-	                  <td th:value="${avis.c5}" id="cr5"></td>
+	                <tr>
+	                  <td  th:text="${product.category.carac5}"> </td>
+	                  <td th:text="${avis.c5}"></td>
 	                 </tr>
-	               
+	                 <tr>
+	                  <td  >Comment : </td>
+	                  <td th:text="${avis.comment}"></td>
+	                 </tr>
 	                  </table>
 	                  
 	                  
@@ -333,6 +272,7 @@
 	                  </div>
 	                  
 	                </li>
+	</div>
 	                
 	              </ul>
                  
@@ -347,22 +287,22 @@
 	
 	                   
 	                      	<label class="mb-4" th:text="${product.category.carac1}"></label><br/>
-	                        <input type="range" min="0" max="5" value="3"  step="0.1" class="c1" id="note"  th:value="${avis.c1}" name="c1">
+	                        <input type="range" min="0" max="5" value="3" class="c1" id="note"  th:value="${avis.c1}" name="c1">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	                      
 	                      	<label class="mb-4" th:text="${product.category.carac2}"></label><br/>
-	                        <input type="range" min="0" max="5" value="3" class="c2" step="0.1" id="note" th:value="${avis.c2}" name="c2">
+	                        <input type="range" min="0" max="5" value="3" class="c2" id="note" th:value="${avis.c2}" name="c2">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	
 	                        <label  class="mb-4" th:text="${product.category.carac3}"></label>
-	                        <input type="range" min="0" max="5" value="3" step="0.1" class="c3" id="note" th:value="${avis.c3}" name="c3">
+	                        <input type="range" min="0" max="5" value="3" class="c3" id="note" th:value="${avis.c3}" name="c3">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	                    
 	                        <label class="mb-4" th:text="${product.category.carac4}"></label>
-	                        <input type="range" min="0" max="5" value="3" step="0.1" class="c4" id="note" th:value="${avis.c4}" name="c4">
+	                        <input type="range" min="0" max="5" value="3" class="c4" id="note" th:value="${avis.c4}" name="c4">
 	                        <label><span  id="demo"></span></label><br/><br/>  
 	                        <label class="mb-4" th:text="${product.category.carac5}"></label>
-	                        <input type="range" min="0" max="5" value="3" step="0.1" class="c5" id="note" th:value="${avis.c5}" name="c5">
+	                        <input type="range" min="0" max="5" value="3" class="c5" id="note" th:value="${avis.c5}" name="c5">
 	                        <label><span  id="demo"></span></label><br/><br/>  
 	                   
 	                  <div class="form-group">
@@ -405,20 +345,21 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>
           <div class="col-md-6 col-lg">
              <div class="ftco-footer-widget mb-4">
-               <h2 class="ftco-heading-2">Business Owners</h2>
+               <h2 class="ftco-heading-2">Main Pages</h2>
               <ul class="list-unstyled">
                 <li><a href="../" class="py-1 d-block">Home</a></li>
                 <li><a href="/#about" class="py-1 d-block">About</a></li>
-                <li><a href="/Products" class="py-1 d-block">Our products</a></li>
+                <li><a href="/user/add-product" class="py-1 d-block">Add Products</a></li>
                 <li><a href="/Contact" class="py-1 d-block">Contact</a></li>
               </ul>
               
@@ -488,74 +429,6 @@
          slider.oninput = function() {
               output.innerHTML = this.value;
          }
-  </script>
-  
-  <script >
- 
-  var ratings = {
-		  carac1 : document.getElementById("cr1").getAttribute("value") , 
-	      carac2:  document.getElementById("cr2").getAttribute("value") ,
-	      carac3 : document.getElementById("cr3").getAttribute("value") , 
-	      carac4:  document.getElementById("cr4").getAttribute("value") ,
-	      carac5 : document.getElementById("cr5").getAttribute("value") 
-			    } 
-  
-//Total Stars
-  const starsTotal = 5;
-
-  // Run getRatings when DOM loads
-  document.addEventListener('DOMContentLoaded', getRatings);
-
-  // Form Elements
-  
-  const productSelect = document.getElementById('product-select');
-  const ratingControl = document.getElementById('rating-control');
-
-  // Init product
-  let product;
-
-
-  // Product select change
-  productSelect.addEventListener('change', (e) => {
-    product = e.target.value;
-    // Enable rating control
-    ratingControl.disabled = false;
-    ratingControl.value = ratings[product];
-  });
-
-  // Rating control change
-  ratingControl.addEventListener('blur', (e) => {
-    const rating = e.target.value;
-
-    // Make sure 5 or under
-    if (rating > 5) {
-      alert('Please rate 1 - 5');
-      return;
-    }
-
-    // Change rating
-    ratings[product] = rating;
-
-    getRatings();
-  });
-
-  // Get ratings
-  function getRatings() {
-    for (let rating in ratings) {
-      // Get percentage
-      const starPercentage = (ratings[rating] / starsTotal) * 100;
-
-      // Round to nearest 10
-      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-
-      // Set width of stars-inner to percentage
-      document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
-
-      // Add number rating
-      document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
-    }
-  }
-
   </script>
     
   </body>
