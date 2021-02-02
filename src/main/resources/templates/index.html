@@ -150,7 +150,11 @@
                   <div class="text">
                     <p class="mb-4" th:value="${review.comment}" th:text="${review.comment}">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                    	<div class="posted mb-3 d-flex">
+              		<div class="img author ">
+                    	 <img  th:src="*{'data:img/png;base64,'+{review.user.imageU}}" style="width: 80px; height: 80px;border-radius: 50% 50%;" class="ml-4 mt-3">
+                    	 </div>
+                    	 </div>
                     	<div class="pl-3">
 		                    <p class="name" th:value="${review.user.username}" th:text="${review.user.username}"></p>
 		                    <span class="position" th:value="${review.dateofcreation}" th:text="${review.dateofcreation}"></span>
@@ -323,7 +327,9 @@
               </a>
               <div class="text p-3">
               	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(images/person_2.jpg);"></div>
+              	<div class="img author">
+            	 <img  th:src="*{'data:img/png;base64,'+{prod.userp.imageU}}" style="width: 50px; height: 50px;border-radius: 50%; " >
+	          	 </div>
               		<div class="desc pl-3">
               			Posted By <i th:value="${prod.userp.username}" th:text="${prod.userp.username}"></i>
               			<span th:value="${prod.dateofcreation}" th:text="${prod.dateofcreation}"></span>

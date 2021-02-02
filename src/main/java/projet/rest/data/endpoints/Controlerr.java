@@ -272,11 +272,12 @@ public class Controlerr {
     	try {
     		//if (!FileName.isEmpty())
     			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes()));
-    		//else {
-    			//MultipartFile f = "C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png";
-    			/*InputStream in = new FileInputStream("C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png");
-    			MultipartFile f = new MultipartFile(in);
-    			user.setImageU(Base64.getEncoder().encodeToString(file.getBytes(in.get)));
+    		/*else {
+    			MultipartFile output_file = (MultipartFile) new File("C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png");
+    			MultipartFile f = "C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png";
+    			//InputStream in = new FileInputStream("C:\\Users\\Wael Latrech\\Desktop\\Study\\Tek-Up\\Projet\\CustomerReview\\src\\main\\resources\\static\\images\\wael.png");
+    			//MultipartFile f = new MultipartFile(in);
+    			user.setImageU(Base64.getEncoder().encodeToString(output_file.getBytes()));
     		}*/
 		} catch (IOException e) {
 			System.out.println("dowiw");
