@@ -346,10 +346,11 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>

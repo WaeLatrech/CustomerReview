@@ -401,9 +401,6 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
                 testDislike = true;
                 break;
             }
-
- 
-
         }
         }
         

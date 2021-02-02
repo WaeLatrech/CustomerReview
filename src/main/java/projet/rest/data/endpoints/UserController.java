@@ -86,15 +86,6 @@ public class UserController {
 			{
 			return "redirect:/logout";
 	    	}
-		/*else if (CheckRole().equals("ADMIN")) {
-			UserEntity admin = userrepo.findByUsername(getUserUsername());
-			model.addAttribute("admin",admin);
-			
-			 userindex
-<li class="nav-item"><a href="/admin/home" class="nav-link" th:text=${admin.role}> Home</a></li>
-}
-			 * */
-		
 		List <ProductEntity> products = service.getAllProduct();
 	    ProductEntity prod = new ProductEntity();
 	    List <ProductEntity> prods = products.subList(Math.max(products.size() - 3, 0), products.size());
@@ -114,7 +105,9 @@ public class UserController {
 	    model.addAttribute("users", users);
 	    model.addAttribute("products", products);
 	    model.addAttribute("categories", categories);
-	    	
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    return "user/userindex";
 	}
 
@@ -124,14 +117,16 @@ public class UserController {
 		
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
-		 List<CategoryEntity> cats = service.getAllCategories() ; 
+		 List<CategoryEntity> categories = service.getAllCategories() ; 
 		    
 			ProductEntity product = new ProductEntity();
 			model.addAttribute("product", product);
 			List <ProductEntity> products  = service.getProductsByCategory(title)  ; 
 			model.addAttribute("products", products);
-			model.addAttribute("categories", cats );
-		
+			model.addAttribute("categories", categories );
+			/**** footer *****/
+		    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+		    model.addAttribute("footercategories", footerCategories);
 			return "user/products" ; 
 	}
 	
@@ -148,7 +143,10 @@ public class UserController {
 		model.addAttribute("category",cat);
 		UserEntity user = userrepo.findByUsername(getUserUsername());
 		model.addAttribute("user",user);
-		return "user/add-product";
+		/**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
+	    return "user/add-product";
 	}
 	
 	@PostMapping("/add-product")
@@ -171,6 +169,9 @@ public class UserController {
 	a.setUser(user);
 		model.addAttribute("user",user);
 		model.addAttribute("avis",a);
+		/**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 		return "user/add-review";
 		
 	}
@@ -199,7 +200,9 @@ public class UserController {
 		model.addAttribute("user",user);
 		List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
-	    
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    return "user/contact";
 	}
 	
@@ -220,7 +223,9 @@ public class UserController {
 		model.addAttribute("avis",avis);
 		List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
-	    
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    return "user/Account";
 	}
  	ConfirmationTokenRepository conftrepo ;

@@ -121,18 +121,19 @@
                       <div class="row" >
           <div class="col-md-4 d-flex ftco-animate" th:each="product : ${products}">
             <div class="blog-entry align-self-stretch">
-              <a th:href="@{/add-review/{id}(id=${product.idp})}"class="block-20" ><center> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 150px; height: 180px; "></center>
+              <a th:href="@{/add-review/{id}(id=${product.idp})}"class="block-20" >
+              	<center> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 150px; height: 180px; "></center>
               </a>
               <div class="text p-3">
-                <div class="posted mb-3 d-flex">
-                  <div class="img author" style="background-image: url(static/images/CustomerReview/src/main/resources/static/images/no-image.jpg);" ></div>
-                  <div class="desc pl-3">
-                    <span th:value=" ${product.nom}" th:text="${product.nom}"></span>
+                <div class="posted  d-flex">
+                  </div>
+                  <div class="desc ">
+                    User: <small th:value=" ${product.userp.username}" th:text="${product.userp.username}"></small><br>
                    
-                       <small  th:text="${product.avisss.size}" > </small> 
+                     Nb Rev: <small  th:text="${product.avisss.size}" > </small> 
                  
                   </div>
-                </div>
+                
                 <div class="desc ">
                   <span th:value="${product.rate}" th:text="${product.rate}"></span>
                  
@@ -213,10 +214,11 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>

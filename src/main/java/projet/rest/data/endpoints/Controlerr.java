@@ -79,7 +79,9 @@ public class Controlerr {
 	    model.addAttribute("reviewss" , AllReviews)  ; 
 	    model.addAttribute("products", products);
 	    
-	    
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    
 	    return "/index";
 	}
@@ -98,7 +100,9 @@ public class Controlerr {
 		model.addAttribute("products", products);
 		List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
-	    
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 		return "Other/products" ; 
     }
     /******************************************/
@@ -114,7 +118,9 @@ public class Controlerr {
 		model.addAttribute("product",p);
 		List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
-	    
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 		return "Reviews/add-review";
 	}
    //****************************************************
@@ -129,6 +135,9 @@ public class Controlerr {
 	    }
 	    List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    return "Other/contact";
 	}
 	
@@ -151,6 +160,9 @@ public class Controlerr {
 	    }
 	    List<CategoryEntity> categories = service.getAllCategories() ; 
 	    model.addAttribute("categories", categories);
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 	    return "Other/login";
 	}
 	
@@ -242,6 +254,9 @@ public class Controlerr {
 	    model.addAttribute("categories", categories);
 		UserEntity userentity = new UserEntity();
 		model.addAttribute("user",userentity);
+	    /**** footer *****/
+	    List <CategoryEntity> footerCategories = categories.subList(Math.max(categories.size() - 4, 0), categories.size());
+	    model.addAttribute("footercategories", footerCategories);
 		return "Other/Sign-up";
 	}
 	//*********************************************************************
@@ -290,35 +305,7 @@ public class Controlerr {
   }
 
 	}
-	/*	UserRepository userrepo;
-	ConfirmationTokenRepository conftrepo ;
 	
-	@PostMapping("/Sign-up")
-	public String UserregisterSuccess(@ModelAttribute("user") UserEntity user, RedirectAttributes redirAttrs) {
-		UserEntity existingMail = userrepo.findByEmail(user.getEmail());
-		UserEntity existingUsername = userrepo.findByUsername(user.getUsername());
-        if(existingMail != null)
-        {	redirAttrs.addFlashAttribute("error", "mail already exists");
-        	return "redirect:/Sign-up";
-        }
-        else if(existingUsername != null)
-        {	redirAttrs.addFlashAttribute("error", "Username already exists");
-        	return "redirect:/Sign-up";
-        }
-        else
-        {
-        	service.createUserEntity(user);
-            ConfirmationToken confirmationToken = new ConfirmationToken(user);
-            conftrepo.save(confirmationToken);
-            String text="To confirm your account, please click here : "
-                    +"http://localhost:9090/confirm-account/"+confirmationToken.getConfirmationToken();
-            SendEmailService.verifyEmail(user.getEmail(),"Mail Verified!",text);
-           redirAttrs.addFlashAttribute("success", "Account created! Check your mail to activate Your Account");
-            return "redirect:/Login";
-  }
-
-	}*/
-	//*******************************************************************
 	@GetMapping("/confirm-account/{confirmationToken}")
     public String confirmUserAccount(@PathVariable String confirmationToken, RedirectAttributes redirAttrs)
     {	
