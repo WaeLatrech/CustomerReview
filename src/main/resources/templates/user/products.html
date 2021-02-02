@@ -118,30 +118,30 @@
                   			<div class="tab-pane container p-0 active" id="services-1">
                     		<!--///////////////////////////////////////////////////////////////-->
                       			<div class="row" >
-						          	<div class="col-md-4 d-flex ftco-animate" th:each="product : ${products}">
-						            	<div class="blog-entry align-self-stretch">
-						              		<a th:href="@{/add-review/{id}(id=${product.idp})}" class="block-20" >
-						              			<center> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 150px; height: 180px; "></center>
-						              		</a>
-						              		<div class="text p-3">
-						                		<div class="posted mb-3 d-flex">
-						                  		<div class="img author" style="background-image: url(../../static/images/CustomerReview/src/main/resources/static/images/no-image.jpg);" ></div>
-						                 		 <div class="desc pl-3">
-						                    		<span th:value=" ${product.nom}" th:text="${product.nom}"></span>						                   
-						                    		<small th:value=" ${product.avisss.size()}" th:text="${product.avisss.size()}" > </small> 
-								                  </div>
-								                </div>
-								                <div class="desc ">
-								                  	<span th:value="${product.rate}" th:text="${product.rate}"></span> 
-								                </div>
-								                <h3 class="heading" th:value="${product.nom}" th:text="${product.nom}"><a href="#"></a></h3>
-								                <div th:value="${product.dateofcreation}" th:text="${product.dateofcreation}" ></div>
-								             </div>
-								          </div>
-								       </div>
-								  </div>
-							</div>
-						</div>
+          <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate" th:each="product : ${products}">
+            <div class="blog-entry align-self-stretch">
+              <a th:href="@{/add-review/{id}(id=${product.idp})}"> <img alt="" th:src="*{'data:img/png;base64,'+{product.img}}" style="width: 280px; height: 250px; ">
+              </a>
+              <div class="text p-3">
+              	<div class="posted mb-3 d-flex">
+              	<div class="img author">
+            	 <img  th:src="*{'data:img/png;base64,'+{product.userp.imageU}}" style="width: 50px; height: 50px;border-radius: 50%; " >
+	          	 </div>
+              		<div class="desc pl-3">
+              			Posted By <i th:value="${product.userp.username}" th:text="${product.userp.username}"></i>
+              			<span th:value="${product.dateofcreation}" th:text="${product.dateofcreation}"></span>
+              		</div>
+              	</div>
+                <h3 class="heading"><a href="#" th:value="${product.nom}" th:text="${product.nom}"></a></h3>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+            </div>
+          </div>
+        </div>
         				<!---------//////////////////////////////////////////////////////////////////////----->
                   
 
