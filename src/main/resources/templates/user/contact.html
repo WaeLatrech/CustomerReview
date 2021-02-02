@@ -69,6 +69,9 @@
 			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
 	           		</div>
 		        	</li>			        	<li class="nav-item active"><a href="" class="nav-link">Contact</a></li>
+			       <li class="nav-item" th:switch="${user.Role}">
+                     <a th:case="'ADMIN'" class="nav-link" href="/admin/home"> Admin Page</a>
+                    </li>
 			        </ul>
 		      	</div>
 		    </div>
