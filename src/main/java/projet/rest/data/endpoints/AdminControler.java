@@ -303,8 +303,19 @@ a.setC5(c5);
 	
 	
 	@GetMapping("/reportreview")
-	public String ReportReviews() {
-	    return "admin/reportreviewadmin";
+	public String ReportReviews(Model model) {
+				List<AvisEntity> allReviews = service.getAllReviews();
+				List<AvisEntity> reviewReported = new ArrayList<AvisEntity>();
+				
+					for (AvisEntity avisEntity : allReviews) {
+						if(avisEntity.getRepport()>0)
+							reviewReported.add(avisEntity);
+					}
+				AvisEntity a = new AvisEntity();
+				model.addAttribute("Reviews",reviewReported);
+				model.addAttribute("a",a);
+			
+			    return "admin/reportreviewadmin";
 	}
 	
 }

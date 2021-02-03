@@ -32,8 +32,10 @@ import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
 import projet.rest.data.models.ConfirmationToken;
 import projet.rest.data.models.ProductEntity;
+import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
 import projet.rest.data.repositories.ConfirmationTokenRepository;
+import projet.rest.data.repositories.ReportRepository;
 import projet.rest.data.repositories.UserRepository;
 import projet.rest.data.services.SendEmailService;
 import projet.rest.data.services.UserService;
@@ -193,6 +195,25 @@ public class UserController {
 		return "redirect:/user/add-review/"+idp;
 	}
 
+	ReportRepository reprepo;
+	@GetMapping("/report/{idp}/{id}/{user}")
+	public String Repport (RedirectAttributes redirAttrs,@PathVariable("id") int idavis ,@PathVariable("user") int iduser ,@PathVariable("idp") int idp ) {
+		AvisEntity avis = service.getAvisById(idavis);
+		for (ReportEntity i : service.getAllReports()) {
+			if((i.getIdavis()==idavis)&&(i.getIduser()==iduser)) {
+				redirAttrs.addFlashAttribute("error", "Review Already Reported");
+				return "redirect:/user/add-review/"+idp;
+			}
+				
+		}
+		
+		avis.setRepport(avis.getRepport()+1);
+		service.modifyAvis(idavis, avis);
+		ReportEntity report = new ReportEntity(iduser,idavis);
+		reprepo.save(report);
+		redirAttrs.addFlashAttribute("success", "Review Reported Successfully");
+		return "redirect:/user/add-review/"+idp;
+	}
 	
 	@GetMapping("/Contact")
 	public String Contact(Model model) {

@@ -64,6 +64,6 @@ public  class AvisEntity {
  
     @CreationTimestamp
     private Date dateofcreation ;
-	
+	private int repport=0;
 	
 }

@@ -205,6 +205,8 @@
 	
 	            <div class="pt-5 mt-5"    >
 	            <h3> Reviews : </h3>
+	            <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
 	            <br>
 	              <ul class="comment-list" >
 	             <div  th:each="avis : ${product.avisss}">
@@ -294,7 +296,7 @@
 	                     <P>
 	                      <a href="#" class="mr-4" cliked="false"><span class="fa fa-thumbs-up" aria-hidden="true" ></span> Like </a>
 	                      <a href="#" class="mr-4"><span class="fa fa-thumbs-down" aria-hidden="true"></span> Dislike</a>
-	                      <a href="#" class="mr-4"><span class="fa fa-comment" aria-hidden="true"></span> report</a>
+	                      <a th:href="@{/user/report/{idp}/{id}/{userid}(idp=${product.idp},id=${avis.id},userid=${user.id})}" class="mr-4"><span class="fa fa-comment" aria-hidden="true"></span> report</a>
 	                      <a href="#" class="mr-4" style="color: grey; " >  <span class="fa fa-thumbs-up" aria-hidden="true" th:text="${avis.nblike}" ></span></a> 
 	                      <a href="#" class="mr-4" style="color: grey "> <span class="fa fa-thumbs-down " aria-hidden="true" th:text="${avis.nbdislike}" ></span></a>  
 	                      

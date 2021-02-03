@@ -18,11 +18,13 @@ import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
 import projet.rest.data.models.ConfirmationToken;
 import projet.rest.data.models.ProductEntity;
+import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
 import projet.rest.data.repositories.AvisRepository;
 import projet.rest.data.repositories.CategoryRepository;
 import projet.rest.data.repositories.ConfirmationTokenRepository;
 import projet.rest.data.repositories.ProductRepository;
+import projet.rest.data.repositories.ReportRepository;
 import projet.rest.data.repositories.UserRepository;
 
  
@@ -41,9 +43,10 @@ public class UserServiceImp implements UserService {
     private ProductRepository reposProduct ; 
     private AvisRepository reposAvis ; 
     private ConfirmationTokenRepository repostoken;
+    private ReportRepository reporepo;
     
     @Autowired
-    public UserServiceImp(ConfirmationTokenRepository repostoken,UserRepository reposUser, CategoryRepository reposCat, ProductRepository reposProduit,
+    public UserServiceImp(ReportRepository reporepo,ConfirmationTokenRepository repostoken,UserRepository reposUser, CategoryRepository reposCat, ProductRepository reposProduit,
             AvisRepository reposAvis) {
         super();
         this.repostoken=repostoken;
@@ -51,6 +54,7 @@ public class UserServiceImp implements UserService {
         this.reposCat = reposCat;
         this.reposProduct = reposProduit;
         this.reposAvis = reposAvis;
+        this.reporepo = reporepo;
     }
     
     
@@ -59,7 +63,10 @@ public class UserServiceImp implements UserService {
         return reposUser.findAll();
     }
     
-
+    @Override
+    public List<ReportEntity> getAllReports() {
+        return reporepo.findAll();
+    }
 
 
 
@@ -377,6 +384,9 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
                oldavis.setC2(newEntityAvis.getC2());
            if (newEntityAvis.getC3()!= -1 )
                oldavis.setC3(newEntityAvis.getC3());
+           if (newEntityAvis.getRepport()!= 0 )
+               oldavis.setRepport(newEntityAvis.getRepport());
+           
            
          return reposAvis.save(oldavis);
         

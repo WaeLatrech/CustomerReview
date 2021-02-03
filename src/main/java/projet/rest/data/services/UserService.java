@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
 import projet.rest.data.models.ProductEntity;
+import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
 
 public interface UserService {
@@ -43,4 +44,5 @@ public interface UserService {
     public void DelTokenByIdUser(long i) ;
     //public AvisEntity addDisLike(int id , int userid);
 	void modifyUserEntity(long id , UserEntity newUser);
+	public List<ReportEntity> getAllReports();
 }
