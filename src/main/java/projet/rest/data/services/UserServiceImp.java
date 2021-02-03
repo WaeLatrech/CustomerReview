@@ -17,12 +17,16 @@ import org.springframework.web.multipart.MultipartFile;
 import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
 import projet.rest.data.models.ConfirmationToken;
+import projet.rest.data.models.DislikeEntity;
+import projet.rest.data.models.LikeEntity;
 import projet.rest.data.models.ProductEntity;
 import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
 import projet.rest.data.repositories.AvisRepository;
 import projet.rest.data.repositories.CategoryRepository;
 import projet.rest.data.repositories.ConfirmationTokenRepository;
+import projet.rest.data.repositories.DislikeRepository;
+import projet.rest.data.repositories.LikeRepository;
 import projet.rest.data.repositories.ProductRepository;
 import projet.rest.data.repositories.ReportRepository;
 import projet.rest.data.repositories.UserRepository;
@@ -44,9 +48,11 @@ public class UserServiceImp implements UserService {
     private AvisRepository reposAvis ; 
     private ConfirmationTokenRepository repostoken;
     private ReportRepository reporepo;
+    private LikeRepository likerepo;
+    private DislikeRepository dislikerepo;
     
     @Autowired
-    public UserServiceImp(ReportRepository reporepo,ConfirmationTokenRepository repostoken,UserRepository reposUser, CategoryRepository reposCat, ProductRepository reposProduit,
+    public UserServiceImp(DislikeRepository dislikerepo,LikeRepository likerepo,ReportRepository reporepo,ConfirmationTokenRepository repostoken,UserRepository reposUser, CategoryRepository reposCat, ProductRepository reposProduit,
             AvisRepository reposAvis) {
         super();
         this.repostoken=repostoken;
@@ -55,6 +61,8 @@ public class UserServiceImp implements UserService {
         this.reposProduct = reposProduit;
         this.reposAvis = reposAvis;
         this.reporepo = reporepo;
+        this.likerepo = likerepo;
+        this.dislikerepo = dislikerepo;
     }
     
     
@@ -67,8 +75,14 @@ public class UserServiceImp implements UserService {
     public List<ReportEntity> getAllReports() {
         return reporepo.findAll();
     }
-
-
+    @Override
+    public List<LikeEntity> getAllLikes() {
+        return likerepo.findAll();
+    }
+    @Override
+    public List<DislikeEntity> getAllDisLikes() {
+        return dislikerepo.findAll();
+    }
 
     @Override
     public UserEntity getUserEntityById(long id) {
@@ -487,4 +501,78 @@ Optional<AvisEntity> opt = reposAvis.findById(id);
         return this.modifyAvis(id, a);
     }
     */
+	@Override
+    public float setRaaaaaate1(ProductEntity p ,float a1) {
+            float x =0;
+            for (AvisEntity a : p.getAvisss())
+            {
+                x=x+a.getC1();
+            }
+            x = x/(p.getAvisss().size());
+p.setRatec1(x);            
+return p.getRatec1() ;
+            
+        }
+
+ 
+
+
+    @Override
+    public float setRaaaaaate2(ProductEntity p, float a2) {
+        float x =0;
+        for (AvisEntity a : p.getAvisss())
+        {
+            x=x+a.getC2();
+        }
+        x = x/(p.getAvisss().size());
+p.setRatec2(x);            
+return p.getRatec2() ;
+    
+    }
+
+ 
+
+
+    @Override
+    public float setRaaaaaate3(ProductEntity p, float a3) {
+        // TODO Auto-generated method stub
+        float x =0;
+        for (AvisEntity a : p.getAvisss())
+        {
+            x=x+a.getC3();
+        }
+        x = x/(p.getAvisss().size());
+p.setRatec3(x);            
+return p.getRatec3() ;
+    }
+
+ 
+
+
+    @Override
+    public float setRaaaaaate4(ProductEntity p, float a4) {
+        float x =0;
+        for (AvisEntity a : p.getAvisss())
+        {
+            x=x+a.getC4();
+        }
+        x = x/(p.getAvisss().size());
+p.setRatec4(x);            
+return p.getRatec4() ;
+    }
+
+ 
+
+
+    @Override
+    public float setRaaaaaate5(ProductEntity p, float a5) {
+        float x =0;
+        for (AvisEntity a : p.getAvisss())
+        {
+            x=x+a.getC5();
+        }
+        x = x/(p.getAvisss().size());
+p.setRatec5(x);            
+return p.getRatec5() ;
+    }
 }

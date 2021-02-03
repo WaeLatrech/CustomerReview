@@ -61,6 +61,11 @@ public void setRatee() {
 	}
 	
 	}
+private float Ratec1;
+private float Ratec2;
+private float Ratec3;
+private float Ratec4;
+private float Ratec5;
 	
 
 

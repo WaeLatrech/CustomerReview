@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
+import projet.rest.data.models.DislikeEntity;
+import projet.rest.data.models.LikeEntity;
 import projet.rest.data.models.ProductEntity;
 import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
@@ -45,4 +47,11 @@ public interface UserService {
     //public AvisEntity addDisLike(int id , int userid);
 	void modifyUserEntity(long id , UserEntity newUser);
 	public List<ReportEntity> getAllReports();
+	public List<LikeEntity> getAllLikes();
+	public List<DislikeEntity> getAllDisLikes();
+	float setRaaaaaate1(ProductEntity p ,float a);
+    float setRaaaaaate2(ProductEntity p ,float a);
+    float setRaaaaaate3(ProductEntity p ,float a);
+    float setRaaaaaate4(ProductEntity p ,float a);
+    float setRaaaaaate5(ProductEntity p ,float a);
 }

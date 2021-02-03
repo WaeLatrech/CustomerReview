@@ -31,10 +31,14 @@ import lombok.Data;
 import projet.rest.data.models.AvisEntity;
 import projet.rest.data.models.CategoryEntity;
 import projet.rest.data.models.ConfirmationToken;
+import projet.rest.data.models.DislikeEntity;
+import projet.rest.data.models.LikeEntity;
 import projet.rest.data.models.ProductEntity;
 import projet.rest.data.models.ReportEntity;
 import projet.rest.data.models.UserEntity;
 import projet.rest.data.repositories.ConfirmationTokenRepository;
+import projet.rest.data.repositories.DislikeRepository;
+import projet.rest.data.repositories.LikeRepository;
 import projet.rest.data.repositories.ReportRepository;
 import projet.rest.data.repositories.UserRepository;
 import projet.rest.data.services.SendEmailService;
@@ -178,22 +182,28 @@ public class UserController {
 		
 	}
 	@PostMapping("/add-review/{id}")
-	public String ReviewSuccess(@ModelAttribute("avis") AvisEntity a , @PathVariable("id") int idp ) {
-		/*service.createProduct(a);*/
-		a.setUser(userrepo.findByUsername(getUserUsername()));
-		
-		try {
-			//a.setProduct(p);
-			service.createAvis(idp, a);
-			//a.toString();
-		}
-		catch(NoSuchElementException e) {
-			return "user/ProductNotFound";
-		}
-		ProductEntity p = service.getProductById(idp);
-		p.setRate(service.rate(idp));
-		return "redirect:/user/add-review/"+idp;
-	}
+    public String ReviewSuccess(@ModelAttribute("avis") AvisEntity a , @PathVariable("id") int idp ) {
+        /*service.createProduct(a);*/
+        a.setUser(userrepo.findByUsername(getUserUsername()));
+       
+        try {
+            //a.setProduct(p);
+            service.createAvis(idp, a);
+            //a.toString();
+        }
+        catch(NoSuchElementException e) {
+            return "user/ProductNotFound";
+        }
+        ProductEntity p = service.getProductById(idp);
+        service.setRaaaaaate1(p, a.getC1());
+        service.setRaaaaaate2(p, a.getC2());
+        service.setRaaaaaate3(p, a.getC3());
+        service.setRaaaaaate4(p, a.getC4());
+        service.setRaaaaaate5(p, a.getC5());
+   
+        p.setRate(service.rate(idp));
+        return "redirect:/user/add-review/"+idp;
+    }
 
 	ReportRepository reprepo;
 	@GetMapping("/report/{idp}/{id}/{user}")
@@ -212,6 +222,74 @@ public class UserController {
 		ReportEntity report = new ReportEntity(iduser,idavis);
 		reprepo.save(report);
 		redirAttrs.addFlashAttribute("success", "Review Reported Successfully");
+		return "redirect:/user/add-review/"+idp;
+	}
+		LikeRepository likerepo;
+		DislikeRepository Dislikerepo;
+		@GetMapping("/like/{idp}/{id}/{user}")
+		public String Like (RedirectAttributes redirAttrs,@PathVariable("id") int idavis ,@PathVariable("user") int iduser ,@PathVariable("idp") int idp ) {
+			AvisEntity avis = service.getAvisById(idavis);
+			for (LikeEntity i : service.getAllLikes()) {
+				if((i.getIdavis()==idavis)&&(i.getIduser()==iduser)) {
+					avis.setNblike(avis.getNblike()-1);
+					service.modifyAvis(idavis, avis);
+					likerepo.delete(i);
+					return "redirect:/user/add-review/"+idp;
+				}
+				else {
+					
+				for (DislikeEntity j : service.getAllDisLikes()) {
+				
+				 if ((j.getIdavis()==idavis)&&(j.getIduser()==iduser)&&(j.getIduser()==i.getIduser())) {
+					avis.setNbdislike(avis.getNbdislike()-1);
+					service.modifyAvis(idavis, avis);
+					Dislikerepo.delete(j);
+					avis.setNblike(avis.getNblike()+1);
+					service.modifyAvis(idavis, avis);
+				LikeEntity like = new LikeEntity(iduser,idavis);
+				likerepo.save(like);
+					return "redirect:/user/add-review/"+idp;
+				}}
+
+				}
+					
+			}
+			avis.setNblike(avis.getNblike()+1);
+			service.modifyAvis(idavis, avis);
+		LikeEntity like = new LikeEntity(iduser,idavis);
+		likerepo.save(like);
+		return "redirect:/user/add-review/"+idp;
+	}
+		@GetMapping("/dislike/{idp}/{id}/{user}")
+		public String DislLike (RedirectAttributes redirAttrs,@PathVariable("id") int idavis ,@PathVariable("user") int iduser ,@PathVariable("idp") int idp ) {
+			AvisEntity avis = service.getAvisById(idavis);
+			for (DislikeEntity i : service.getAllDisLikes()) {
+				if((i.getIdavis()==idavis)&&(i.getIduser()==iduser)) {
+					avis.setNbdislike(avis.getNbdislike()-1);
+					service.modifyAvis(idavis, avis);
+					Dislikerepo.delete(i);
+					return "redirect:/user/add-review/"+idp;
+				}
+				else {
+				for (LikeEntity j : service.getAllLikes()) {
+				 if ((j.getIdavis()==idavis)&&(j.getIduser()==iduser)&&(j.getIduser()==i.getIduser())) {
+					avis.setNblike(avis.getNblike()-1);
+					service.modifyAvis(idavis, avis);
+					likerepo.delete(j);
+					avis.setNbdislike(avis.getNbdislike()+1);
+					service.modifyAvis(idavis, avis);
+				DislikeEntity dislike = new DislikeEntity(iduser,idavis);
+				Dislikerepo.save(dislike);
+					return "redirect:/user/add-review/"+idp;
+				}}
+
+				}
+					
+			}
+			avis.setNbdislike(avis.getNbdislike()+1);
+			service.modifyAvis(idavis, avis);
+		DislikeEntity dislike = new DislikeEntity(iduser,idavis);
+		Dislikerepo.save(dislike);
 		return "redirect:/user/add-review/"+idp;
 	}
 	
