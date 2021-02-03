@@ -134,7 +134,23 @@
               		
               		</div>
               	</div>
-                <h3 class="heading"><a href="#" th:value="${product.nom}" th:text="${product.nom}"></a></h3>
+                <h3 class="heading">
+                <a href="#" th:value="${product.nom}" th:text="${product.nom}">
+                </a>
+                   <div style="float:right">
+                   <small   th:text="${product.avisss.size}" ></small> 
+                   <small>reviews</small>
+                   </div>
+                </h3>
+                      <center>  <div class="desc " style="color : #d9ba2b;">
+                   <small class="fa fa-star"></small>
+                   <small class="fa fa-star"></small>
+                   <small class="fa fa-star"></small>
+                   <small class="fa fa-star"></small>
+                   <small class="fa fa-star"></small>
+                   <a th:value="${product.rate}" th:text="${product.rate}"></a>
+              </div>
+            </center> 
               </div>
             </div>
           </div>
@@ -147,24 +163,7 @@
                   
 
                   </div>
-                  <div class="tab-pane container p-0 fade" id="services-2">
-                 <!---------------------------- washer ------------> 
-                 
-                 
-                  </div>
-                  <div class="tab-pane container p-0 fade" id="services-3">
-                   
-                  </div>
-                  <div class="tab-pane container p-0 fade" id="services-4">
-                 
-                  </div>
-                   
-                  <div class="tab-pane container p-0 fade" id="services-5">
-                  
-                  </div>
-                  <div class="tab-pane container p-0 fade" id="services-6">
-                 
-                  </div>
+           
         </div>
       </div>
     </section>

@@ -63,7 +63,7 @@
 		      	<div class="collapse navbar-collapse" id="ftco-nav">
 			        <ul class="navbar-nav mr-auto">
 			        	<li class="nav-item"><a href="/user/home" class="nav-link">Home</a></li>
-			        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
+			        	<li class="nav-item"><a href="#about" class="nav-link">About</a></li>
 						<li class="nav-item dropdown">
 			        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
 			        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
@@ -71,6 +71,9 @@
 		           		</div>
 			        	</li>			        	
 			        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+				     <li class="nav-item" th:switch="${user.Role}">
+                     <a th:case="'ADMIN'" class="nav-link" href="/admin/home"> Admin Page</a>
+                    </li>
 				     </ul>
 		      	</div>
 		    </div>
@@ -202,10 +205,11 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>

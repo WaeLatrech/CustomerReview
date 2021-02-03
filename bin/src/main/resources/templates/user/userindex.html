@@ -75,6 +75,9 @@
 	           		</div>
 		        	</li>			        	
 		        	<li class="nav-item"><a href="/user/Contact" class="nav-link">Contact</a></li>
+			       <li class="nav-item" th:switch="${user.Role}">
+                     <a th:case="'ADMIN'" class="nav-link" href="/admin/home"> Admin Page</a>
+                    </li>
 			        </ul>
 		      	</div>
 		    </div>
@@ -149,10 +152,14 @@
                   <div class="text">
                     <p class="mb-4" th:value="${review.comment}" th:text="${review.comment}">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(../images/person_1.jpg)"></div>
-                    	<div class="pl-3">
+                    	<div class="posted mb-3 d-flex">
+              		<div class="img author ">
+                    	 <img  th:src="*{'data:img/png;base64,'+{review.user.imageU}}" style="width: 80px; height: 80px;border-radius: 50% 50%;" class="ml-4 mt-3">
+                    	 </div>
+                    	 </div>
+                    	 <div class="pl-3">
 		                    <p class="name" th:value="${review.user.username}" th:text="${review.user.username}"></p>
-		                    <span class="position">Marketing Manager</span>
+		                    <span class="position" th:value="${review.dateofcreation}" th:text="${review.dateofcreation}"></span>
 		                  </div>
 	                  </div>
                   </div>
@@ -244,7 +251,7 @@
               </div>
               <div class="media-body pl-3">
                 <h3 class="heading">Idea</h3>
-                <p>Because « 85 % des consommateurs font autant confiance aux avis en ligne qu’aux recommandations personnelles » 
+                <p>Because « 85 % of consumers trust online reviews as much as personal recommendations » 
                   – <strong>Bright Local.</strong><br>These statistics and your personal experience should bring you to the conclusion that a
                    web review service is in high demand 
                   now and can be a driving link in creating a chain between customers and businesses.</p>
@@ -292,9 +299,9 @@
                 <span class="fa fa-barcode" aria-hidden="true"  ></span>
               </div>
               <div class="media-body pl-3">
-                <h3 class="heading">goal</h3>
-                <p>our site is a community of passionate people, sharing their product and service experiences.
-                  Our community of reviewers are a dedicated bunch who want to help you discover what's right for you.</p>
+                <h3 class="heading">Goal</h3>
+                <p>Our site is a community of passionate people, sharing their product and service experiences.
+                  Our community of reviewers are a dedicated bunch of consumers who want to help you discover what's right for you.</p>
               </div>
             </div>   
           </div>
@@ -322,7 +329,9 @@
               </a>
               <div class="text p-3">
               	<div class="posted mb-3 d-flex">
-              		<div class="img author" style="background-image: url(images/person_2.jpg);"></div>
+              	<div class="img author">
+            	 <img  th:src="*{'data:img/png;base64,'+{prod.userp.imageU}}" style="width: 50px; height: 50px;border-radius: 50%; " >
+	          	 </div>
               		<div class="desc pl-3">
               			Posted By <i th:value="${prod.userp.username}" th:text="${prod.userp.username}"></i>
               			<span th:value="${prod.dateofcreation}" th:text="${prod.dateofcreation}"></span>
@@ -357,10 +366,11 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="/Products/Smartphone" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="/Products/Washer%20Machine" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>

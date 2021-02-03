@@ -21,6 +21,24 @@
 	
 	    <link rel="stylesheet" type="text/css"  th:href="@{../../css/flaticon.css}">
 	    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+	    
+	    <style>
+	    
+	        body {
+	      background-color:  #f2f2f2;
+	    }
+	    .box1 {
+	     background-color:  #ffffff;
+          width: 1200px !important;
+        
+          padding: 20px ;
+         margin: -1px;
+         }
+         hr { 
+         width: 1120px !important ; 
+         margin-right: 100px   !important ; 
+        }
+	    </style>
   </head>
   <body>
 		<div class="wrap">
@@ -67,7 +85,12 @@
 		        <ul class="navbar-nav mr-auto">
 		        	<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
 		        	<li class="nav-item"><a href="/#about" class="nav-link">About</a></li>
-		        	<li class="nav-item active"><a href="/Products" class="nav-link">Our products</a></li>
+		        	<li class="nav-item dropdown">
+		        	<a href="/Products" class="nav-link"  id="dropdowncol" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Our products</a>
+		        	<div class="dropdown-menu" aria-labelledby="dropdowncol">
+			           <a    class="dropdown-item" th:href="@{/Products/{title}(title=${category.Title})}" th:each="category : ${categories}" th:value="${category.Title}"  th:text="${category.Title}"></a>
+	           		</div>
+		        	</li>
 		          <li class="nav-item"><a href="Contact" class="nav-link">Contact</a></li>
 		        </ul>
 		      </div>
@@ -78,32 +101,50 @@
 	    </div>
 		</section>
  
-	   	<section class="ftco-section ftco-degree-bg" style="margin-left:30% !important" >
+	   <section class="ftco-section ftco-degree-bg" style="margin-left:10% !important" >
+	   	
 	    	<div class="container-fluid ">
 	        	<div class="row">
 	          		<div class="col-lg-8 order-lg-last ftco-animate">
 	              		<ul class="comment-list">
 	            			<li class="">
 			                  <div class="vcard bio">
-			                    <img  th:src="*{'data:img/png;base64,'+{product.userp.imageU}}" alt="Image placeholder">
+			                    <img  th:src="*{'data:img/png;base64,'+{product.userp.imageU}}"  class="ml-4 mt-3" alt="Image placeholder" >
 			                  </div>
-			                  <div class="comment-body">
-			                    <h3 th:text=${product.userp.username}></h3>
+			                  <div class="comment-body mt-2">
+			                    <h3 th:text=${product.userp.username} ></h3>
 	                    		<div class="meta">
 	                    			<span class="fa fa-chevron-circle-down" th:text=${product.dateofcreation}></span>
+	                    			<hr> 	
 	                    		</div>
+	                    		
 	                    		</div>
+	                    		
+	                    	
 	                		</li>
+	                		
+	                	   <li> 
+	                	    <h3 th:text=${product.nom} style="margin-left:5% ;"></h3>
+	                	   
+	                	   </li>
+
 	              		</ul>
-	          			<p>
-							<h3 th:text=${product.nom} style="color:grey;"></h3>
-	              			<img th:src="*{'data:img/png;base64,'+{product.img}}" alt="" class="img-fluid" style=" width: 450px ; height: 350px ;margin-left:70px  ">
-	            
-	            			<h3 class="mb-3" >Description </h3>
-	          				<p  th:text=${product.description}></p>
-	                  		<hr >
-	                <!--partie hedhi mazelt mouch kamela fibali demain bech nkamel nekhdemha -->
-	                  <div class="row">
+	              	
+	          			<div class="box1">
+	          				
+							<img th:src="*{'data:img/png;base64,'+{product.img}}" alt="" class="img-fluid mb-8" style=" width: 450px ; height: 420px ;margin-left:30%  ">
+						
+	              			
+	                      
+	            			<h3 >Description </h3>
+	          				<p  th:text=${product.description} 	></p>
+	          			
+	          			</div>
+	                  	
+	              
+	                 </br>
+	                  <div class="row box1">
+	                 
 	                    <div class="side">
 	                      <div>5 star</div>
 	                    </div>
@@ -160,65 +201,35 @@
 	                      <div>20</div>
 	                    </div>
 	                  </div>
-	                  
-	                   <hr>
-	            
-	
-	
-	
-	            <div class="pt-5 mt-5"    >
-	            <h3> Reviews : </h3>
+	                    <div class="pt-5 mt-5 ">
+	             <h3> Reviews  </h3>
 	            <br>
 	              <ul class="comment-list" >
 	             <div  th:each="avis : ${product.avisss}">
 	              
-	                <li class="comment">
-	                 <hr>
-	                	                 	                  <br>
+	                <li class="comment box1">
+	                 
+	                	      <br>
 	                  <div class="vcard bio" >
-	                    <img  th:src="*{'data:img/png;base64,'+{avis.user.imageU}}"  alt="Image placeholder">
+	                    <img  th:src="*{'data:img/png;base64,'+{avis.user.imageU}}"  class="ml-2" alt="Image placeholder">
 	                  </div>
 	                 
 	                  <div class="comment-body">
 	                  
-	                  <!-- reviewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+	                
 	                  
-	                    <h3 th:text=${avis.user.username}></h3>
+	                    <h3   style=" font-size :16px ; margin-top : 5px !important; " th:text=${avis.user.username}></h3>
 	                    <div class="meta"><span class="fa fa-chevron-circle-down" th:text="${avis.dateofcreation}"></span></div>
 	                   
-	                    <!--   <table style="width:40%" class="stars">
-	 
-	                      <tr>
-	                        <td class="heading">rapidity</td>
-	                        <td>  <span class="fa fa-star checked "></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star-o"></span>
-	                                          <span class="fa fa-star-o"></span></td>
-	                        <td  class="percent"></td>
-	                      </tr>
-	                      <tr>
-	                        <td class="heading">rapidity</td>
-	                        <td>  <span class="fa fa-star checked "></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star-o"></span>
-	                                          <span class="fa fa-star-o"></span></td>
-	                        <td  class="percent">94%</td>
-	                      </tr>
-	                      <tr>
-	                        <td class="heading">rapidity</td>
-	                        <td>  <span class="fa fa-star checked "></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star checked"></span>
-	                                          <span class="fa fa-star-o"></span>
-	                                          <span class="fa fa-star-o"></span></td>
-	                        <td  class="percent">80%</td>
-	                      </tr>
-	                    </table>
-	                  -->
-	                  <table>
+	                 <hr> 
+	                  <table> 
+	                    <tr >
+	                  <td style="color : #000000; font-size : 18px ; " th:text="${avis.comment}"></td>
+	                   
+	                  </tr>
+	    
 	                  <tr>
+	                  
 	                  <td th:text="${product.category.carac1}" ></td>
 	                  <td th:text="${avis.c1}"></td>
 	                  </tr>
@@ -244,7 +255,7 @@
 	                   
 	                  
 	
-	                    
+	                   <hr>  
 	                     <P>
 	                      <a href="#" class="mr-4" cliked="false"><span class="fa fa-thumbs-up" aria-hidden="true" ></span> Like </a>
 	                      <a href="#" class="mr-4"><span class="fa fa-thumbs-down" aria-hidden="true"></span> Dislike</a>
@@ -265,27 +276,27 @@
 	              
 	              <div class="comment-form-wrap pt-5">
 	                <h3 class="mb-5">Leave a review</h3>
-	                <form action="#" class="p-5 bg-light" >
+	                <form action="#" class="p-5 bg-light" style=" border : 1px solid ;" >
 	                  
 	
 	                   
 	                      	<label class="mb-4" th:text="${product.category.carac1}"></label><br/>
-	                        <input type="range" min="0" max="5" value="3" class="qalityPrice" id="note"  th:value="${avis.c1}" name="QalityPrice">
+	                        <input type="range" min="0" max="5" value="3" step="0.1" class="qalityPrice" id="note"  th:value="${avis.c1}" name="QalityPrice">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	                      
 	                      	<label class="mb-4" th:text="${product.category.carac2}"></label><br/>
-	                        <input type="range" min="0" max="5" value="3" class="cameraquality" id="note" th:value="${avis.c2}" name="cameraquality">
+	                        <input type="range" min="0" max="5" value="3" step="0.1" class="cameraquality" id="note" th:value="${avis.c2}" name="cameraquality">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	
 	                        <label  class="mb-4" th:text="${product.category.carac3}"></label>
-	                        <input type="range" min="0" max="5" value="3" class="design" id="note" th:value="${avis.c3}" name="design">
+	                        <input type="range" min="0" max="5" value="3" step="0.1" class="design" id="note" th:value="${avis.c3}" name="design">
 	                        <label><span  id="demo"></span></label><br/><br/>
 	                    
 	                        <label class="mb-4" th:text="${product.category.carac4}"></label>
-	                        <input type="range" min="0" max="5" value="3" class="durability" id="note" th:value="${avis.c4}" name="durability">
+	                        <input type="range" min="0" max="5" step="0.1" value="3" class="durability" id="note" th:value="${avis.c4}" name="durability">
 	                        <label><span  id="demo"></span></label><br/><br/>  
 	                        <label class="mb-4" th:text="${product.category.carac5}"></label>
-	                        <input type="range" min="0" max="5" value="3" class="durability" id="note" th:value="${avis.c5}" name="durability">
+	                        <input type="range" min="0" max="5" value="3"  step="0.1" class="durability" id="note" th:value="${avis.c5}" name="durability">
 	                        <label><span  id="demo"></span></label><br/><br/>  
 	                   
 	                  <div class="form-group">
@@ -335,10 +346,11 @@
           </div>
           <div class="col-md-6 col-lg">
             <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Categories</h2>
+              <h2 class="ftco-heading-2">New Categories</h2>
               <ul class="list-unstyled">
-                <li><a href="products.html#services-1" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Smartphones</a></li>
-                <li><a href="products.html#services-2" class="py-1 d-block"><span class="fa fa-check mr-3"></span>Washers</a></li>
+              <div th:each="category : ${footercategories}">
+                <li><a th:href="@{/Products/{Title}(Title=${category.Title})}" class="py-1 d-block"  th:text="${category.Title}"></a></li>
+              </div>
               </ul>
             </div>
           </div>

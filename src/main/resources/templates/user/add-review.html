@@ -224,36 +224,66 @@
 	                    <div class="meta"><span class="fa fa-chevron-circle-down" th:text="${avis.dateofcreation}"></span></div>
 	    
 	                  <hr>
+	                   <div  style="color : #000000; font-size : 18px ; " th:text="${avis.comment}"></div>
 	                 <table>
-	                   <tr >
-	                  <td style="color : #000000; font-size : 18px ; " th:text="${avis.comment}"></td>
-	                   
-	                  </tr>
+	               
 	                  <tr>
 	                  <td th:text="${product.category.carac1}" ></td>
-	                  <td th:text="${avis.c1}"></td>
+	                  <td>
+	                  <div style=" border-radius:50%; padding: 5px; border: 1px solid ; background-color : #d9ba2b; ; color:#ffffff">
+	                  
+	                  <a th:text="${avis.c1}"></a>
+	                  <a>/5</a>
+	                  
+	                  </div>
+	                  </td>
 	                  </tr>
 	                    <tr>
 	                  <td th:text="${product.category.carac2}" > </td>
-	                  <td th:text="${avis.c2}"></td>
+	                 <td>
+	                  <div style=" border-radius:50%; padding: 5px; border: 1px solid ; background-color : #d9ba2b; ; color:#ffffff">
+	                  
+	                  <a th:text="${avis.c2}"></a>
+	                  <a>/5</a>
+	                  
+	                  </div>
+	                  </td>
 	                  </tr>
 	                   <tr>
 	                  <td  th:text="${product.category.carac3}"> </td>
-	                  <td th:text="${avis.c3}"></td>
+	                  <td>
+	                  <div style=" border-radius:50%; padding: 5px; border: 1px solid ; background-color : #d9ba2b; ; color:#ffffff">
+	                  
+	                  <a th:text="${avis.c3}"></a>
+	                  <a>/5</a>
+	                  
+	                  </div>
+	                  </td>
 	                  </tr>
 	                  
 	                       <tr>
 	                  <td  th:text="${product.category.carac4}"></td>
-	                  <td th:text="${avis.c4}"></td>
+	                  <td>
+	                  <div style=" border-radius:50%; padding: 5px; border: 1px solid ; background-color : #d9ba2b; ; color:#ffffff">
+	                  
+	                  <a th:text="${avis.c4}"></a>
+	                  <a>/5</a>
+	                  
+	                  </div>
+	                  </td>
 	                  </tr>
 	                <tr>
 	                  <td  th:text="${product.category.carac5}"> </td>
-	                  <td th:text="${avis.c5}"></td>
+	                 <td>
+	                  <div style=" border-radius:50%; padding: 5px; border: 1px solid ; background-color : #d9ba2b; ; color:#ffffff">
+	                  
+	                  <a th:text="${avis.c5}"></a>
+	                  <a>/5</a>
+	                  
+	                  </div>
+	                  </td>
 	                 </tr>
-	                 <tr>
-	                  <td  >Comment : </td>
-	                  <td th:text="${avis.comment}"></td>
-	                 </tr>
+	               
 	                  </table>
 	                  
 	                  
